@@ -5,6 +5,8 @@ import { AdminAppUri } from './utilities/enums/adminAppUri'
 import Root from './pages/Root'
 import Dashboard from './pages/dashboard'
 
+import authenRoute from './routes/authen'
+
 
 const router = createBrowserRouter([
   {
@@ -13,11 +15,12 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Dashboard />,
+        Component: Dashboard,
         loader: args => import('./pages/dashboard').then(i => i.loader(args))
       }
     ]
-  }
+  },
+  authenRoute,
 ])
 
 

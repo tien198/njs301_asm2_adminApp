@@ -1,4 +1,5 @@
 import { LoaderFunctionArgs } from "react-router";
+import { BackendAdminUri } from "../../utilities/enums/backendUri";
 
 export default function Dashboard() {
     return (
@@ -9,5 +10,11 @@ export default function Dashboard() {
 }
 
 export function loader(args: LoaderFunctionArgs) {
-
+    // get infor from `BackendAdminUri`
+    // const getUsersTotal = fetch(BackendAdminUri.getUsersTotal,{
+    //     method:'get',
+    //     headers:{
+    //         'authorization': // create login page and jwtUtilities
+    //     }
+    // })
 }
