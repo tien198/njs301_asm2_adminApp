@@ -1,5 +1,5 @@
 import StorageEnum from '../enums/storageEnum'
-import AuthRes from '../../models/interfaces/AuthenResponse'
+import AuthRes from '../../models/interfaces/IAuthenResponse'
 
 
 export function addJwt(authRes: AuthRes) {
