@@ -2,6 +2,7 @@ import { Outlet, RouteObject } from 'react-router';
 
 import { AdminAppUri } from '../utilities/enums/adminAppUri'
 import Login from '../pages/authentication/Login';
+import SignUp from '../pages/authentication/Signup';
 
 const authenRouter: RouteObject = {
     path: '/authen',
@@ -15,7 +16,12 @@ const authenRouter: RouteObject = {
         {
             path: AdminAppUri.logout,
             loader: () => import('../pages/authentication/Logout').then(i => i.action()),
-        }
+        },
+        {
+            path: AdminAppUri.signup,
+            element: <SignUp />,
+            action: args => import('../pages/authentication/Signup').then(i => i.action(args)),
+        },
     ]
 }
 

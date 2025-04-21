@@ -8,8 +8,9 @@ import Sidebar from "./comps/Sidebar";
 import DashboardCards from "./comps/DashboardCard";
 import TransactionTable from "./comps/TransactionTable";
 
-
 import { dashboardStats, transactions } from "./data";
+
+
 
 export default function Dashboard() {
     return (
@@ -25,10 +26,7 @@ export default function Dashboard() {
 
 export function loader(args: LoaderFunctionArgs) {
     const jwtToken = getJwtToken()
-    if (!jwtToken) {
-        alert('Unauthorize! Please login admin user!')
-        return redirect(AdminAppUri_Absolute.login)
-    }
+    
     // get infor from `BackendAdminUri`
     const getUsersTotal = fetch(BackendAdminUri.getUsersTotal, {
         method: 'get',

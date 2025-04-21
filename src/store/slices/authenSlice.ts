@@ -11,7 +11,7 @@ const authenSlice = createSlice({
     initialState,
     reducers: {
         setAuthen: (state, action: PayloadAction<IUserInfo>) => {
-
+            state = action.payload
         }
     }
 })

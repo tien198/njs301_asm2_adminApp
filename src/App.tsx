@@ -12,6 +12,8 @@ const router = createBrowserRouter([
   {
     path: AdminAppUri.base,
     element: <Root />,
+    // initialize entire app states in hear
+    loader: () => import('./pages/Root').then(i => i.loader()),
     children: [
       {
         index: true,
@@ -26,7 +28,9 @@ const router = createBrowserRouter([
 
 
 export default function App() {
-  return <RouterProvider router={router} />
+  return (
+    <RouterProvider router={router} />
+  )
 }
 
 

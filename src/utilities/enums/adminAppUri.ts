@@ -2,7 +2,7 @@ export enum AdminAppUri {
     base = '/',
     login = 'login',
     signup = 'sign-up',
-    logout = 'log-out'
+    logout = 'logout'
 }
 
 export enum AdminAppUri_Absolute {

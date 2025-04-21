@@ -8,11 +8,11 @@ export function addJwt(authRes: AuthRes) {
 }
 
 export function getJwtToken() {
-    return localStorage.getItem(StorageEnum.authenToken)
+    return localStorage.getItem(StorageEnum.authenToken) || ''
 }
 
 export function getUserInfor() {
-    const inforJson = localStorage.getItem(StorageEnum.userInfor)
+    const inforJson = localStorage.getItem(StorageEnum.userInfor) || '{}'
     return inforJson
 }
 

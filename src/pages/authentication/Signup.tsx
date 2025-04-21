@@ -4,15 +4,16 @@ import { ActionFunctionArgs, Form, redirect, useActionData } from "react-router"
 import ErrorMsg from './comps/ErrorMsg'
 
 import { addJwt } from "../../utilities/localStorageUtils/authenToken";
-import BackendUri from "../../utilities/enums/backendUri";
+import { BackendAdminUri } from "../../utilities/enums/backendUri";
+import use2wayBinding from "../../cusHooks/use2wayBinding";
 
 
 
 function SignUp() {
     const actionData = useActionData()
 
-    const [userName, setUserName] = useState('')
-    const [password, setPassword] = useState('')
+    const [userName, , onchangeUserName] = use2wayBinding('')
+    const [password, , onchangePassword] = use2wayBinding('')
 
     const [userNameError, setUserNameError] = useState('')
     const [passwordError, setPasswordError] = useState('')
@@ -31,12 +32,12 @@ function SignUp() {
             <h3 className="text-4xl font-bold my-6">Sign Up</h3>
             <Form method="post" className="flex flex-col gap-4 w-80">
                 <input type="text" name="userName"
-                    value={userName} onChange={e => setUserName(e.target.value)}
+                    value={userName} onChange={onchangeUserName}
                     className="border border-gray-900 h-10 p-4 rounded-sm" placeholder="Username" />
                 {userNameError && <ErrorMsg msg={userNameError} />}
 
                 <input type="password" name="password"
-                    value={password} onChange={e => setPassword(e.target.value)}
+                    value={password} onChange={onchangePassword}
                     className="border border-gray-900 h-10 p-4 rounded-sm" placeholder="Password" />
                 {passwordError && <ErrorMsg msg={passwordError} />}
 
@@ -54,7 +55,7 @@ export async function action({ request }: ActionFunctionArgs) {
     const formData = await request.formData()
     const data = Object.fromEntries(formData.entries())
     try {
-        const response = await fetch(BackendUri.signUp, {
+        const response = await fetch(BackendAdminUri.signUp, {
             method: request.method,
             headers: {
                 'Content-Type': 'application/json'
