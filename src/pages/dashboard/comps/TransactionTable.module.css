@@ -1,0 +1,12 @@
+thead tr{
+    height: 4rem;
+}
+
+tbody tr {
+    height: 3.5rem;
+}
+
+th, td {
+    padding-left: .5rem;
+    padding-right: .5rem;
+}

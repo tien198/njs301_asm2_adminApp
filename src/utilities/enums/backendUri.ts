@@ -1,4 +1,4 @@
-enum BackendAdminUri {
+export enum BackendAdminUri {
     base = 'http://localhost:5000/',
     login = base + 'login/',
     signUp = base + 'sign-up/',
@@ -9,5 +9,3 @@ enum BackendAdminUri {
     getBalance = base + admin + 'get-balance/',
     lastTransactions = base + admin + 'last-transactions/',
 }
-
-export default BackendAdminUri

@@ -5,7 +5,7 @@ import { ActionFunctionArgs } from "react-router";
 import ErrorMsg from "./comps/ErrorMsg";
 
 import { addJwt } from "../../utilities/localStorageUtils/authenToken";
-import BackendUri from "../../utilities/enums/backendUri";
+import { BackendAdminUri } from "../../utilities/enums/backendUri";
 
 export default function Login() {
     const actionData = useActionData()
@@ -47,7 +47,7 @@ export default function Login() {
 export async function action({ request }: ActionFunctionArgs) {
     const formData = Object.fromEntries((await request.formData()).entries())
     try {
-        const res = await fetch(BackendUri.login, {
+        const res = await fetch(BackendAdminUri.login, {
             method: request.method,
             headers: {
                 'content-type': 'application/json'
