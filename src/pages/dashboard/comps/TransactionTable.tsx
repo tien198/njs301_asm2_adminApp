@@ -1,5 +1,7 @@
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import cssMod from './TransactionTable.module.css'
+import ITransaction from '../dataModels/ITransaction';
+import ReactRouterAwait from '../../../components/ReactRouterAwait';
 
 type status = 'Booked' | 'Checkin' | 'Checkout'
 
@@ -23,64 +25,63 @@ const StatusBadge = ({ status }: stateProps) => {
 
 
 
-type tran = {
-    id: string, user: string, hotel: string, room: string, date: string, price: string, payment: string, status: string
-}
-
 type tranProps = {
-    transactions: tran[]
+    transactions: Promise<ITransaction[]>
 }
 
-const TransactionTable = ({ transactions }: tranProps) => {
+export default function TransactionTable({ transactions }: tranProps) {
     return (
         <div className=" p-6 rounded-xl shadow">
             <h2 className="text-xl font-semibold mb-4">Latest Transactions</h2>
-            <table className={`w-full text-sm text-left ${cssMod}`}>
-                <thead>
-                    <tr className="text-gray-600 border-t border-gray-400">
-                        <th></th>
-                        <th>ID</th>
-                        <th>User</th>
-                        <th>Hotel</th>
-                        <th>Room</th>
-                        <th>Date</th>
-                        <th>Price</th>
-                        <th>Payment Method</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {transactions.map((txn) => (
-                        <tr key={txn.id} className="border-t border-gray-400 hover:bg-gray-100">
-                            <td><input type="checkbox" /></td>
-                            <td>{txn.id}</td>
-                            <td>{txn.user}</td>
-                            <td>{txn.hotel}</td>
-                            <td>{txn.room}</td>
-                            <td>{txn.date}</td>
-                            <td>{txn.price}</td>
-                            <td>{txn.payment}</td>
-                            <td><StatusBadge status={txn.status as status} /></td>
+            <ReactRouterAwait resoleve={transactions}>{(trans: ITransaction[]) =>
+                <table className={`w-full text-sm text-left ${cssMod}`}>
+                    <thead>
+                        <tr className="text-gray-600 border-t border-gray-400">
+                            <th></th>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Hotel</th>
+                            <th>Room</th>
+                            <th>Date</th>
+                            <th>Price</th>
+                            <th>Payment Method</th>
+                            <th>Status</th>
                         </tr>
-                    ))}
-                </tbody>
-                <tfoot >
-                    <tr>
-                        <td colSpan={9} className='text-end'>
-                            <PaginationSimple />
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
+                    </thead>
+                    <tbody>
+                        {trans
+                            ? trans.map((tran) => (
+                                <tr key={tran._id} className="border-t border-gray-400 hover:bg-gray-100">
+                                    <td><input type="checkbox" /></td>
+                                    <td>{tran._id}</td>
+                                    <td>{tran.user.userName}</td>
+                                    <td>{tran.hotelRef?.name}</td>
+                                    <td>{tran.rooms.reduce((acc, curr) => acc ? ', ' : acc + curr.roomNumbers, '')}</td>
+                                    <td>{new Date(tran.startDate).toLocaleDateString() + ' - ' + new Date(tran.endDate).toLocaleDateString()}</td>
+                                    <td>{tran.price}</td>
+                                    <td>{tran.payment}</td>
+                                    <td><StatusBadge status={tran.status as status} /></td>
+                                </tr>
+                            ))
+                            : <tr><td colSpan={9} className='text-center p-7'>Not found transactions</td></tr>
+                        }
+                    </tbody>
+                    <tfoot >
+                        <tr>
+                            <td colSpan={9} className='text-end'>
+                                <PaginationSimple />
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            }
+            </ReactRouterAwait>
         </div>
     );
 };
 
 
 
-
-
-export default TransactionTable;
 
 
 function PaginationSimple() {
