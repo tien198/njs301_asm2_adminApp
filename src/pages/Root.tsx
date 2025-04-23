@@ -13,8 +13,12 @@ export default function Root() {
     return <>
         <Navbar />
         <Sidebar />
-
-        <Outlet />
+        <div className="flex">
+            <div className="w-72"></div>
+            <div className="w-full p-9">
+                <Outlet />
+            </div>
+        </div>
     </>
 }
 

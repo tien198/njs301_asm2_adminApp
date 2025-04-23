@@ -4,7 +4,7 @@ import { FaHotel, FaUser, FaSignOutAlt, FaPlus, FaHome } from "react-icons/fa";
 
 export default function Sidebar() {
     return (
-        <div className="w-64 pl-6 shadow h-screen fixed top-0">
+        <div className="w-64 pl-6 shadow h-screen fixed top-0 left-0">
             <h1 className="text-xl font-bold text-purple-700 h-24 flex justify-center items-center">Admin Page</h1>
             <div className="flex flex-col gap-7 mt-5">
                 <div>

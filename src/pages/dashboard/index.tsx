@@ -14,12 +14,10 @@ export default function Dashboard() {
     const loader: ILoader = useLoaderData()
     const lastTransactions = loader.lastTransactions
     return (
-        <div className="flex">
-            <main className="ml-64 p-8 min-h-screen w-full">
-                <DashboardCards loader={loader} />
-                <TransactionTable transactions={lastTransactions} />
-            </main>
-        </div>
+        <main className="min-h-screen w-full">
+            <DashboardCards loader={loader} />
+            <TransactionTable transactions={lastTransactions} />
+        </main>
     );
 }
 

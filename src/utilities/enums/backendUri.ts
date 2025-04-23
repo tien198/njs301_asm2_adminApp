@@ -8,4 +8,6 @@ export enum BackendAdminUri {
     getRevenueTotal = base + admin + 'get-revenue-total/',
     getBalance = base + admin + 'get-balance/',
     lastTransactions = base + admin + 'last-transactions/',
+    getHotelCount = base + admin + 'get-hotel-count/',
+    getAdminHotels = base + admin + 'get-hotels/',
 }
