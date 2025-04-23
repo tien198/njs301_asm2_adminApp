@@ -1,10 +1,8 @@
 import { LoaderFunctionArgs, redirect, useLoaderData } from "react-router";
 
 import { BackendAdminUri } from "../../utilities/enums/backendUri";
-import { AdminAppUri_Absolute } from "../../utilities/enums/adminAppUri";
 import { getJwtToken } from "../../utilities/localStorageUtils/authenToken";
 
-import Sidebar from "./comps/Sidebar";
 import DashboardCards from "./comps/DashboardCard";
 import TransactionTable from "./comps/TransactionTable";
 
@@ -17,7 +15,6 @@ export default function Dashboard() {
     const lastTransactions = loader.lastTransactions
     return (
         <div className="flex">
-            <Sidebar />
             <main className="ml-64 p-8 min-h-screen w-full">
                 <DashboardCards loader={loader} />
                 <TransactionTable transactions={lastTransactions} />

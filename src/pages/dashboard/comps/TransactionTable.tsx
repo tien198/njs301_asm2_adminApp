@@ -2,6 +2,7 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import cssMod from './TransactionTable.module.css'
 import ITransaction from '../dataModels/ITransaction';
 import ReactRouterAwait from '../../../components/ReactRouterAwait';
+import ExternalLib from '../../../utilities/ExternalLib'
 
 type status = 'Booked' | 'Checkin' | 'Checkout'
 
@@ -56,7 +57,7 @@ export default function TransactionTable({ transactions }: tranProps) {
                                     <td>{tran._id}</td>
                                     <td>{tran.user.userName}</td>
                                     <td>{tran.hotelRef?.name}</td>
-                                    <td>{tran.rooms.reduce((acc, curr) => acc ? ', ' : acc + curr.roomNumbers, '')}</td>
+                                    <td>{tran.rooms.reduce((acc, curr) => acc + (acc ? ', ' : '') + ExternalLib.toString(curr.roomNumbers), '')}</td>
                                     <td>{new Date(tran.startDate).toLocaleDateString() + ' - ' + new Date(tran.endDate).toLocaleDateString()}</td>
                                     <td>{tran.price}</td>
                                     <td>{tran.payment}</td>

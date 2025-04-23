@@ -2,7 +2,7 @@ import { FaHotel, FaUser, FaSignOutAlt, FaPlus, FaHome } from "react-icons/fa";
 
 
 
-const Sidebar = () => {
+export default function Sidebar() {
     return (
         <div className="w-64 pl-6 shadow h-screen fixed top-0">
             <h1 className="text-xl font-bold text-purple-700 h-24 flex justify-center items-center">Admin Page</h1>
@@ -41,10 +41,4 @@ const Sidebar = () => {
             </div>
         </div>
     );
-};
-
-
-
-
-
-export default Sidebar;
+}

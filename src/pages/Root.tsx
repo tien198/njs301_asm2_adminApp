@@ -6,11 +6,14 @@ import { setAuthen } from "../store/slices/authenSlice"
 import { IUserInfo } from "../models/interfaces/IAuthenResponse"
 import { getJwtToken, getUserInfor } from "../utilities/localStorageUtils/authenToken"
 import { AdminAppUri_Absolute } from "../utilities/enums/adminAppUri"
+import Sidebar from "../components/Sidebar"
 
 export default function Root() {
 
     return <>
         <Navbar />
+        <Sidebar />
+
         <Outlet />
     </>
 }
