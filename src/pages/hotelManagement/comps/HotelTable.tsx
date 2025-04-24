@@ -20,7 +20,7 @@ export default function HotelTable() {
             </thead>
             <tbody>
                 <ReactRouterAwait resoleve={loader}>{hotels =>
-                    hotels.map((hotel: IHotel) =>
+                    hotels?.map((hotel: IHotel) =>
                         <HotelRow key={hotel._id} hotel={hotel} />
                     )}
                 </ReactRouterAwait>

@@ -3,7 +3,8 @@ export enum AdminAppUri {
     login = 'login',
     signup = 'sign-up',
     logout = 'logout',
-    hotelsManagement = 'hotels-management'
+    hotelsManagement = 'hotels-management',
+    addHotel = "add-hotel"
 }
 
 export enum AdminAppUri_Absolute {
@@ -12,4 +13,5 @@ export enum AdminAppUri_Absolute {
     signup = base + 'authen/' + AdminAppUri.signup,
     logout = base + 'authen/' + AdminAppUri.logout,
     hotelsManagement = base + AdminAppUri.hotelsManagement,
+    addHotel = base + AdminAppUri.addHotel
 }

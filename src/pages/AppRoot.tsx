@@ -6,21 +6,18 @@ import { setAuthen } from "../store/slices/authenSlice"
 import { IUserInfo } from "../models/interfaces/IAuthenResponse"
 import { getJwtToken, getUserInfor } from "../utilities/localStorageUtils/authenToken"
 import { AdminAppUri_Absolute } from "../utilities/enums/adminAppUri"
-import Sidebar from "../components/Sidebar"
+
+
 
 export default function Root() {
 
     return <>
         <Navbar />
-        <Sidebar />
-        <div className="flex">
-            <div className="w-72"></div>
-            <div className="w-full p-9">
-                <Outlet />
-            </div>
-        </div>
+        <Outlet />
     </>
 }
+
+
 
 // initialize entire app states in hear
 export function loader() {

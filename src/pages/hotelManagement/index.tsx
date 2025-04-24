@@ -11,7 +11,7 @@ export default function HotelList() {
         <>
             <div className="flex justify-between ">
                 <h1 className="text-gray-500 text-2xl">Hotel List</h1>
-                <Link to={''} className="border border-green-700 text-green-700 rounded-sm p-2" >Add New</Link>
+                <Link to={AdminAppUri_Absolute.addHotel} className="border border-green-700 text-green-700 rounded-sm p-2" >Add New</Link>
             </div>
             <HotelTable />
         </>
