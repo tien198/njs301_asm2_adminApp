@@ -5,7 +5,7 @@ type props = { hotel: IHotel }
 
 export default function HotelRow({ hotel }: props) {
     return (
-        <tr className="border-b hover:bg-gray-50">
+        <tr className="border-b h-14 hover:bg-gray-50">
             <td><input type="checkbox" /></td>
             <td>{hotel?._id}</td>
             <td>{hotel?.name}</td>

@@ -8,7 +8,7 @@ export default function HotelTable() {
     return (
         <table className="w-full text-sm mt-4">
             <thead className="text-left bg-gray-100">
-                <tr>
+                <tr className="h-14">
                     <th><input type="checkbox" /></th>
                     <th>ID</th>
                     <th>Name</th>

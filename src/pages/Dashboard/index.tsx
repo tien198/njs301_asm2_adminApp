@@ -1,12 +1,12 @@
-import { LoaderFunctionArgs, redirect, useLoaderData } from "react-router";
+import { LoaderFunctionArgs, useLoaderData } from "react-router";
 
+import ILoader from "./dataModels/ILoader";
 import { BackendAdminUri } from "../../utilities/enums/backendUri";
 import { getJwtToken } from "../../utilities/localStorageUtils/authenToken";
 
 import DashboardCards from "./comps/DashboardCard";
 import TransactionTable from "./comps/TransactionTable";
 
-import ILoader from "./dataModels/ILoader";
 
 
 

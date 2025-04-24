@@ -24,7 +24,7 @@ export default function HotelForm() {
   };
 
   return (
-    <form className="p-6 grid grid-cols-2 gap-6">
+    <form className=" grid grid-cols-2 gap-6">
       <FormField label="Name" value={form.name} onChange={handleChange} name="name" />
       <FormField label="Type" value={form.type} onChange={handleChange} name="type" />
       <FormField label="City" value={form.city} onChange={handleChange} name="city" />
@@ -59,9 +59,11 @@ export default function HotelForm() {
           <option>Deluxe Room</option>
         </select>
       </div>
-      <button type="submit" className="col-span-2 bg-teal-700 text-white py-2 rounded mt-4 hover:bg-teal-800">
-        Send
-      </button>
+      <div>
+        <button className="col-span-2 bg-teal-700 text-white py-2 px-20 rounded mt-4 hover:bg-teal-800">
+          Send
+        </button>
+      </div>
     </form>
   );
 }
