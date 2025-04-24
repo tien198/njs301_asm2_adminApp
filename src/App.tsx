@@ -15,8 +15,6 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement:
       <div className='flex justify-center items-center h-screen'>NOT FOUND !</div>,
-    // initialize entire app states in hear
-    loader: () => import('./pages/AppRoot').then(i => i.loader()),
     children: [
       adminRoute,
       authenRoute,
