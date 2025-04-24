@@ -1,4 +1,6 @@
 import { FaHotel, FaUser, FaSignOutAlt, FaPlus, FaHome } from "react-icons/fa";
+import { Link } from "react-router";
+import { AdminAppUri_Absolute } from "../utilities/enums/adminAppUri";
 
 
 
@@ -18,7 +20,7 @@ export default function Sidebar() {
                     <p className="text-gray-400 text-xs mb-2">LISTS</p>
                     <ul className="space-y-2 text-sm">
                         <li className="flex items-center space-x-2 text-purple-700"><FaUser /> <span>Users</span></li>
-                        <li className="flex items-center space-x-2 text-purple-700"><FaHotel /> <span>Hotels</span></li>
+                        <li className="flex items-center space-x-2 text-purple-700"><FaHotel /> <Link to={AdminAppUri_Absolute.hotelsManagement}>Hotels</Link></li>
                         <li className="flex items-center space-x-2 text-purple-700"><FaHotel /> <span>Rooms</span></li>
                         <li className="flex items-center space-x-2 text-purple-700"><FaHotel /> <span>Transactions</span></li>
                     </ul>
