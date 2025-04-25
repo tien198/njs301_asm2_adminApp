@@ -1,43 +1,40 @@
 // components/HotelForm.jsx
-import FormField from "./FormField";
+import { FaLaptopHouse } from "react-icons/fa";
+import use2wayBinding from "../../../cusHooks/use2wayBinding";
+import Input from "./Input";
 import SelectField from "./SelectField";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+
+
 
 export default function HotelForm() {
-  const [form, setForm] = useState({
-    name: "",
-    type: "hotel",
-    city: "",
-    address: "",
-    distance: "",
-    title: "",
-    price: "",
-    desc: "",
-    images: "",
-    featured: false,
-    rooms: [],
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm(prev => ({ ...prev, [name]: value }));
-  };
+  const [name, , onChangeName] = use2wayBinding('')
+  const [type, , onChangeType] = use2wayBinding('')
+  const [city, , onChangeCity] = use2wayBinding('')
+  const [address, , onChangeAddress] = use2wayBinding('')
+  const [distance, , onChangeDistance] = use2wayBinding('')
+  const [title, , onChangeTitle] = use2wayBinding('')
+  const [price, , onChangePrice] = use2wayBinding('')
+  const [desc, , onChangeDesc] = use2wayBinding('')
+  const [images, , onChangeImages] = use2wayBinding('')
+  const [featured, , onChangeFeatured] = use2wayBinding(FaLaptopHouse)
+  const [rooms, setRooms,] = use2wayBinding([])
 
   return (
     <form className=" grid grid-cols-2 gap-6">
-      <FormField label="Name" value={form.name} onChange={handleChange} name="name" />
-      <FormField label="Type" value={form.type} onChange={handleChange} name="type" />
-      <FormField label="City" value={form.city} onChange={handleChange} name="city" />
-      <FormField label="Address" value={form.address} onChange={handleChange} name="address" />
-      <FormField label="Distance from City Center" value={form.distance} onChange={handleChange} name="distance" />
-      <FormField label="Title" value={form.title} onChange={handleChange} name="title" />
-      <FormField label="Price" type="number" value={form.price} onChange={handleChange} name="price" />
-      <FormField label="Description" value={form.desc} onChange={handleChange} name="desc" />
-      <FormField label="Images" value={form.images} onChange={handleChange} name="images" />
+      <Input label="Name" value={name} onChange={onChangeName} />
+      <Input label="Type" value={type} onChange={onChangeType} />
+      <Input label="City" value={city} onChange={onChangeCity} />
+      <Input label="Address" value={address} onChange={onChangeAddress} />
+      <Input label="Distance from City Center" value={distance} onChange={onChangeDistance} />
+      <Input label="Title" value={title} onChange={onChangeTitle} />
+      <Input label="Price" type="number" value={price} onChange={onChangePrice} />
+      <Input label="Description" value={desc} onChange={onChangeDesc} />
+      <Input label="Images" value={images} onChange={onChangeImages} />
       <SelectField
         label="Featured"
-        value={form.featured}
-        onChange={handleChange}
+        value={featured}
+        onChange={onChangeFeatured}
         options={[{ label: "Yes", value: true }, { label: "No", value: false }]}
         name="featured"
       />
@@ -46,9 +43,9 @@ export default function HotelForm() {
         <select
           name="rooms"
           multiple
-          value={form.rooms}
-          onChange={(e) =>
-            setForm({ ...form, rooms: Array.from(e.target.selectedOptions, (option) => option.value) })
+          value={rooms}
+          onChange={
+            e => setRooms(Array.from(e.target.selectedOptions, (option) => option.value))
           }
           className="w-full border border-gray-300 rounded px-3 py-2 h-32"
         >
