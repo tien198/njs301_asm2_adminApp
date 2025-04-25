@@ -12,7 +12,7 @@ export function getJwtToken() {
 }
 
 export function getUserInfor() {
-    const inforJson = localStorage.getItem(StorageEnum.userInfor) || '{}'
+    const inforJson = localStorage.getItem(StorageEnum.userInfor)
     return inforJson
 }
 

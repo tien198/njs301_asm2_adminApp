@@ -5,6 +5,9 @@ import { setAuthen } from "../store/slices/authenSlice"
 import { IUserInfo } from "../models/interfaces/IAuthenResponse"
 import { getJwtToken, getUserInfor } from "../utilities/localStorageUtils/authenToken"
 import { AdminAppUri_Absolute } from "../utilities/enums/adminAppUri"
+import IErrorResponse from "../models/interfaces/IErrorResponse";
+import { BackendAdminUri } from "../utilities/enums/backendUri";
+import ErrorResponse from "../models/implements/ErrorResponse";
 
 export default function AdminRoot() {
     return (
@@ -23,13 +26,22 @@ export default function AdminRoot() {
 
 
 // initialize entire app states in hear
-export function loader() {
+export async function loader() {
     const jwtToken = getJwtToken()
-    const userInfor: IUserInfo = JSON.parse(getUserInfor())
+    const userInfor: IUserInfo = JSON.parse(getUserInfor()!)
+    try {
+        if (!jwtToken)
+            throw new ErrorResponse('Not found jwt token in client!', 401)
 
-    if (!jwtToken || !userInfor.isAdmin) {
-        !userInfor.isAdmin && alert('You don\'t have permission! Please login admin user!')
-        return redirect(AdminAppUri_Absolute.login)
+        userInfor && store.dispatch(setAuthen(userInfor))
+
+    } catch (err) {
+        const er = err as IErrorResponse
+        if (er.status === 401) {
+            const login = confirm('Unauthorize! Please log in admin user!')
+            if (login)
+                return redirect(AdminAppUri_Absolute.login)
+        }
+        console.error(err)
     }
-    store.dispatch(setAuthen(userInfor))
 }

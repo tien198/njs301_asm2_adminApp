@@ -2,6 +2,7 @@ import { useLoaderData } from "react-router";
 import ReactRouterAwait from "../../../components/ReactRouterAwait";
 import IHotel from "../dataModels/IHotel";
 import HotelRow from "./HotelRow";
+import Fallback from "../../../components/Fallback";
 
 export default function HotelTable() {
     const loader = useLoaderData()
@@ -20,9 +21,11 @@ export default function HotelTable() {
             </thead>
             <tbody>
                 <ReactRouterAwait resoleve={loader}>{hotels =>
-                    hotels?.map((hotel: IHotel) =>
+                    hotels ? hotels.map((hotel: IHotel) =>
                         <HotelRow key={hotel._id} hotel={hotel} />
-                    )}
+                    )
+                        : <Fallback />
+                }
                 </ReactRouterAwait>
             </tbody>
         </table>

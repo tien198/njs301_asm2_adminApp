@@ -1,4 +1,4 @@
-import { Link, redirect } from "react-router";
+import { Link } from "react-router";
 import { BackendAdminUri } from "../../utilities/enums/backendUri";
 import { getJwtToken } from "../../utilities/localStorageUtils/authenToken";
 import IErrorResponse from "../../models/interfaces/IErrorResponse";
@@ -18,10 +18,12 @@ export default function HotelList() {
     );
 }
 
-
 export async function loader() {
     const jwtToken = getJwtToken()
     try {
+        if (!jwtToken)
+            return
+
         const res = await fetch(BackendAdminUri.getAdminHotels, {
             headers: { 'authorization': jwtToken }
         })
@@ -29,14 +31,9 @@ export async function loader() {
         const data = res.json()
         if (!res.ok)
             throw await data as IErrorResponse
+
         return data
     } catch (err) {
-        const er = err as IErrorResponse
-        if (er.status === 401) {
-            const login = confirm('Unauthorize! Please log in admin user!')
-            if (login)
-                return redirect(AdminAppUri_Absolute.login)
-        }
         console.error(err)
     }
 }
