@@ -2,8 +2,9 @@
 import { FaLaptopHouse } from "react-icons/fa";
 import use2wayBinding from "../../../cusHooks/use2wayBinding";
 import Input from "./Input";
-import SelectField from "./SelectField";
-import { ChangeEvent, useState } from "react";
+import Select from "./Select";
+import FieldContainer from "./FieldContainer";
+import IOption from "../dataModels/interfaces/IOption";
 
 
 
@@ -20,42 +21,59 @@ export default function HotelForm() {
   const [featured, , onChangeFeatured] = use2wayBinding(FaLaptopHouse)
   const [rooms, setRooms,] = use2wayBinding([])
 
+
+  const types = ['Apartments', 'Resorts', 'Cabins', 'Hotels', 'Villas']
+  const typeOpts: IOption[] = types.map(i => ({ value: i }))
+
+  const featuredOpts: IOption[] = [
+    { label: 'Yes', value: true },
+    { label: 'No', value: false },
+  ]
+
+  const roomsIn = ['2 Bed Room', '1 Bed Room', 'Basement Double Room', 'Superior basement room', 'Deluxe Room',]
+  const roomsOpts: IOption[] = roomsIn.map(i => ({ value: i }))
+
   return (
     <form className=" grid grid-cols-2 gap-6">
-      <Input label="Name" value={name} onChange={onChangeName} />
-      <Input label="Type" value={type} onChange={onChangeType} />
-      <Input label="City" value={city} onChange={onChangeCity} />
-      <Input label="Address" value={address} onChange={onChangeAddress} />
-      <Input label="Distance from City Center" value={distance} onChange={onChangeDistance} />
-      <Input label="Title" value={title} onChange={onChangeTitle} />
-      <Input label="Price" type="number" value={price} onChange={onChangePrice} />
-      <Input label="Description" value={desc} onChange={onChangeDesc} />
-      <Input label="Images" value={images} onChange={onChangeImages} />
-      <SelectField
-        label="Featured"
-        value={featured}
-        onChange={onChangeFeatured}
-        options={[{ label: "Yes", value: true }, { label: "No", value: false }]}
-        name="featured"
-      />
+      <FieldContainer children={
+        <Input label="Name" value={name} onChange={onChangeName} />} />
+
+      <FieldContainer children={
+        <Select label="Type" value={type} onChange={onChangeType} options={typeOpts} />} />
+
+      <FieldContainer children={
+        <Input label="City" value={city} onChange={onChangeCity} />} />
+
+      <FieldContainer children={
+        <Input label="Address" value={address} onChange={onChangeAddress} />} />
+
+      <FieldContainer children={
+        <Input label="Distance from City Center" value={distance} onChange={onChangeDistance} />} />
+
+      <FieldContainer children={
+        <Input label="Title" value={title} onChange={onChangeTitle} />} />
+
+      <FieldContainer children={
+        <Input label="Price" type="number" value={price} onChange={onChangePrice} />} />
+
+      <FieldContainer children={
+        <Input label="Description" value={desc} onChange={onChangeDesc} />} />
+
+      <FieldContainer children={
+        <Input label="Images" value={images} onChange={onChangeImages} />} />
+
+      <FieldContainer children={
+        <Select label="Featured" value={featured} onChange={onChangeFeatured} options={featuredOpts} />} />
+
       <div className="col-span-2">
-        <label className="font-medium mb-1 block">Rooms</label>
-        <select
-          name="rooms"
-          multiple
-          value={rooms}
-          onChange={
-            e => setRooms(Array.from(e.target.selectedOptions, (option) => option.value))
-          }
+        <Select label="Rooms"
+          multiple value={rooms}
+          onChange={e => setRooms(Array.from(e.target.selectedOptions, (option) => option.value))}
+          options={roomsOpts}
           className="w-full border border-gray-300 rounded px-3 py-2 h-32"
-        >
-          <option>2 Bed Room</option>
-          <option>1 Bed Room</option>
-          <option>Basement Double Room</option>
-          <option>Superior basement room</option>
-          <option>Deluxe Room</option>
-        </select>
+        />
       </div>
+
       <div>
         <button className="col-span-2 bg-teal-700 text-white py-2 px-20 rounded mt-4 hover:bg-teal-800">
           Send
