@@ -1,26 +1,27 @@
-// components/HotelForm.jsx
-import { FaLaptopHouse } from "react-icons/fa";
-import use2wayBinding from "../../../cusHooks/use2wayBinding";
+import { useState } from "react";
 import Input from "./Input";
 import Select from "./Select";
 import FieldContainer from "./FieldContainer";
 import IOption from "../dataModels/interfaces/IOption";
+import { useHotelFormDispatch, useHotelFormSelector } from "../cusHooks/useReduxStateManipulate";
+import { setRooms } from '../../../store/slices/addProductFormSlice'
+import useValidateFields from "../cusHooks/useValidateFields";
+import ErrorMsg from "../../Authentication/comps/ErrorMsg";
 
 
 
 export default function HotelForm() {
-  const [name, , onChangeName] = use2wayBinding('')
-  const [type, , onChangeType] = use2wayBinding('')
-  const [city, , onChangeCity] = use2wayBinding('')
-  const [address, , onChangeAddress] = use2wayBinding('')
-  const [distance, , onChangeDistance] = use2wayBinding('')
-  const [title, , onChangeTitle] = use2wayBinding('')
-  const [price, , onChangePrice] = use2wayBinding('')
-  const [desc, , onChangeDesc] = use2wayBinding('')
-  const [images, , onChangeImages] = use2wayBinding('')
-  const [featured, , onChangeFeatured] = use2wayBinding(FaLaptopHouse)
-  const [rooms, setRooms,] = use2wayBinding([])
+  const formFieldsData = useHotelFormSelector()
+  const {
+    name, type, city, address, distance, title, price, desc, images, featured, rooms
+  } = formFieldsData
+  const {
+    onChangeName, onChangeType, onChangeCity, onChangeAddress, onChangeDistance, onChangeTitle, onChangePrice, onChangeDesc, onChangeImages, onChangeFeatured
+  } = useHotelFormDispatch()
 
+  const {
+    nameErrorMsg, typeErrorMsg, cityErrorMsg, addressErrorMsg, distanceErrorMsg, titleErrorMsg, priceErrorMsg, descErrorMsg, imagesErrorMsg, featuredErrorMsg, roomsErrorMsg
+  } = useValidateFields(formFieldsData)
 
   const types = ['Apartments', 'Resorts', 'Cabins', 'Hotels', 'Villas']
   const typeOpts: IOption[] = types.map(i => ({ value: i }))
@@ -33,37 +34,70 @@ export default function HotelForm() {
   const roomsIn = ['2 Bed Room', '1 Bed Room', 'Basement Double Room', 'Superior basement room', 'Deluxe Room',]
   const roomsOpts: IOption[] = roomsIn.map(i => ({ value: i }))
 
+  const [isSubmit, setIsSubmit] = useState(false)
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setIsSubmit(true)
+    const isValid = useValidateFields(formFieldsData)
+    if (isValid) {
+      // Handle form submission
+      console.log("Form submitted successfully");
+    } else {
+      console.log("Form has errors");
+    }
+  }
+
   return (
-    <form className=" grid grid-cols-2 gap-6">
-      <FieldContainer children={
-        <Input label="Name" value={name} onChange={onChangeName} />} />
+    <form onSubmit={onSubmit} className=" grid grid-cols-2 gap-6">
+      <FieldContainer>
+        <Input label="Name" value={name} onChange={onChangeName} />
+        {isSubmit && <ErrorMsg msg={nameErrorMsg && nameErrorMsg} />}
+      </FieldContainer>
 
-      <FieldContainer children={
-        <Select label="Type" value={type} onChange={onChangeType} options={typeOpts} />} />
+      <FieldContainer>
+        <Select label="Type" value={type} onChange={onChangeType} options={typeOpts} />
+        {isSubmit && <ErrorMsg msg={typeErrorMsg && typeErrorMsg} />}
+      </FieldContainer>
 
-      <FieldContainer children={
-        <Input label="City" value={city} onChange={onChangeCity} />} />
+      <FieldContainer>
+        <Input label="City" value={city} onChange={onChangeCity} />
+        {isSubmit && <ErrorMsg msg={cityErrorMsg && cityErrorMsg} />}
+      </FieldContainer>
 
-      <FieldContainer children={
-        <Input label="Address" value={address} onChange={onChangeAddress} />} />
+      <FieldContainer>
+        <Input label="Address" value={address} onChange={onChangeAddress} />
+        {isSubmit && <ErrorMsg msg={addressErrorMsg && addressErrorMsg} />}
+      </FieldContainer>
 
-      <FieldContainer children={
-        <Input label="Distance from City Center" value={distance} onChange={onChangeDistance} />} />
+      <FieldContainer>
+        <Input label="Distance from City Center" value={distance} onChange={onChangeDistance} />
+        {isSubmit && <ErrorMsg msg={distanceErrorMsg && distanceErrorMsg} />}
+      </FieldContainer>
 
-      <FieldContainer children={
-        <Input label="Title" value={title} onChange={onChangeTitle} />} />
+      <FieldContainer>
+        <Input label="Title" value={title} onChange={onChangeTitle} />
+        {isSubmit && <ErrorMsg msg={titleErrorMsg && titleErrorMsg} />}
+      </FieldContainer>
 
-      <FieldContainer children={
-        <Input label="Price" type="number" value={price} onChange={onChangePrice} />} />
+      <FieldContainer>
+        <Input label="Price" type="number" value={price} onChange={onChangePrice} />
+        {isSubmit && <ErrorMsg msg={priceErrorMsg && priceErrorMsg} />}
+      </FieldContainer>
 
-      <FieldContainer children={
-        <Input label="Description" value={desc} onChange={onChangeDesc} />} />
+      <FieldContainer>
+        <Input label="Description" value={desc} onChange={onChangeDesc} />
+        {isSubmit && <ErrorMsg msg={descErrorMsg && descErrorMsg} />}
+      </FieldContainer>
 
-      <FieldContainer children={
-        <Input label="Images" value={images} onChange={onChangeImages} />} />
+      <FieldContainer>
+        <Input label="Images" value={images} onChange={onChangeImages} />
+        {isSubmit && <ErrorMsg msg={imagesErrorMsg && imagesErrorMsg} />}
+      </FieldContainer>
 
-      <FieldContainer children={
-        <Select label="Featured" value={featured} onChange={onChangeFeatured} options={featuredOpts} />} />
+      <FieldContainer>
+        <Select label="Featured" value={featured} onChange={onChangeFeatured} options={featuredOpts} />
+        {isSubmit && <ErrorMsg msg={featuredErrorMsg && featuredErrorMsg} />}
+      </FieldContainer>
 
       <div className="col-span-2">
         <Select label="Rooms"

@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import authenReducer from './slices/authenSlice'
+import addProductFormReducer from './slices/addProductFormSlice'
 
 const store = configureStore({
     reducer: {
-        authen: authenReducer
+        authen: authenReducer,
+        addProductForm: addProductFormReducer
     }
 })
 

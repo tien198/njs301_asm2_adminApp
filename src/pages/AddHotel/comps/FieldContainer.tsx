@@ -6,7 +6,7 @@ type props = {
 
 export default function FieldContainer({ children }: props) {
     return (
-        <div className="flex flex-col mb-4">
+        <div className="flex flex-col mb-4 gap-1">
             {children}
         </div>
     );
