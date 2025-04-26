@@ -1,9 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import IAddProductFormFieldsData from '../../models/interfaces/IAddProductFormFieldsData';
+import IAddHotelFormFieldsData, { HotelFeatured, HotelType } from '../../models/interfaces/IAddHotelFormFieldsData';
 
 
-const initialState: IAddProductFormFieldsData = {
-    name: '', type: '', city: '', address: '', distance: '', title: '', price: '', desc: '', images: '', featured: 'false', rooms: []
+// const initialState: IAddHotelFormFieldsData = {
+//    name: '', type: 'Apartments', city: '', address: '', distance: '', title: '', price: '', desc: '', images: '', featured: 'false', rooms: []
+// }
+
+const initialState: IAddHotelFormFieldsData = {
+    name: 'hotel Name', type: 'Apartments', city: 'Newyork', address: '1980 unknown', distance: '12', title: 'Hotel Del Luna', price: '1200', desc: 'Super Delux', images: 'https://image-uri', featured: 'false', rooms: ['Deluxe Room']
 }
 
 const addProductFormSclice = createSlice({
@@ -13,7 +17,7 @@ const addProductFormSclice = createSlice({
         setName(state, action: PayloadAction<string>) {
             state.name = action.payload
         },
-        setType(state, action: PayloadAction<string>) {
+        setType(state, action: PayloadAction<HotelType>) {
             state.type = action.payload
         },
         setCity(state, action: PayloadAction<string>) {
@@ -37,7 +41,7 @@ const addProductFormSclice = createSlice({
         setImages(state, action: PayloadAction<string>) {
             state.images = action.payload
         },
-        setFeatured(state, action: PayloadAction<'true' | 'false'>) {
+        setFeatured(state, action: PayloadAction<HotelFeatured>) {
             state.featured = action.payload
         },
         setRooms(state, action: PayloadAction<string[]>) {

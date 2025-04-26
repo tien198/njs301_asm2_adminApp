@@ -1,5 +1,6 @@
+import { ChangeEvent } from "react"
 import { useAppDispath, useAppSeletor } from "../../../cusHooks/reduxHooks"
-import IAddProductFormFieldsData from "../../../models/interfaces/IAddProductFormFieldsData"
+import IAddProductFormFieldsData, { HotelFeatured, HotelType } from "../../../models/interfaces/IAddHotelFormFieldsData"
 import { setName, setType, setCity, setAddress, setDistance, setTitle, setPrice, setDesc, setImages, setFeatured, setRooms } from '../../../store/slices/addProductFormSlice'
 
 
@@ -26,16 +27,16 @@ export function useHotelFormSelector(): IAddProductFormFieldsData {
 
 export function useHotelFormDispatch() {
     const dispath = useAppDispath()
-    const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => dispath(setName(e.target.value))
-    const onChangeType = (e: React.ChangeEvent<HTMLSelectElement>) => dispath(setType(e.target.value))
-    const onChangeCity = (e: React.ChangeEvent<HTMLInputElement>) => dispath(setCity(e.target.value))
-    const onChangeAddress = (e: React.ChangeEvent<HTMLInputElement>) => dispath(setAddress(e.target.value))
-    const onChangeDistance = (e: React.ChangeEvent<HTMLInputElement>) => dispath(setDistance(e.target.value))
-    const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => dispath(setTitle(e.target.value))
-    const onChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => dispath(setPrice(e.target.value))
-    const onChangeDesc = (e: React.ChangeEvent<HTMLInputElement>) => dispath(setDesc(e.target.value))
-    const onChangeImages = (e: React.ChangeEvent<HTMLInputElement>) => dispath(setImages(e.target.value))
-    const onChangeFeatured = (e: React.ChangeEvent<HTMLSelectElement>) => dispath(setFeatured(e.target.value as 'true' | 'false'))
+    const onChangeName = (e: ChangeEvent<HTMLInputElement>) => dispath(setName(e.target.value))
+    const onChangeType = (e: ChangeEvent<HTMLSelectElement>) => dispath(setType(e.target.value as HotelType))
+    const onChangeCity = (e: ChangeEvent<HTMLInputElement>) => dispath(setCity(e.target.value))
+    const onChangeAddress = (e: ChangeEvent<HTMLInputElement>) => dispath(setAddress(e.target.value))
+    const onChangeDistance = (e: ChangeEvent<HTMLInputElement>) => dispath(setDistance(e.target.value))
+    const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => dispath(setTitle(e.target.value))
+    const onChangePrice = (e: ChangeEvent<HTMLInputElement>) => dispath(setPrice(e.target.value))
+    const onChangeDesc = (e: ChangeEvent<HTMLInputElement>) => dispath(setDesc(e.target.value))
+    const onChangeImages = (e: ChangeEvent<HTMLInputElement>) => dispath(setImages(e.target.value))
+    const onChangeFeatured = (e: ChangeEvent<HTMLSelectElement>) => dispath(setFeatured(e.target.value as HotelFeatured))
 
     return {
         onChangeName, onChangeType, onChangeCity, onChangeAddress, onChangeDistance, onChangeTitle, onChangePrice, onChangeDesc, onChangeImages, onChangeFeatured

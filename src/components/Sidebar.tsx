@@ -11,9 +11,9 @@ export default function Sidebar() {
             <div className="flex flex-col gap-7 mt-5">
                 <div>
                     <p className="text-gray-400 text-xs mb-2">MAIN</p>
-                    <button className="flex items-center space-x-2 text-sm text-purple-700">
+                    <Link to={AdminAppUri_Absolute.base} className="flex items-center space-x-2 text-sm text-purple-700">
                         <FaHome /> <span>Dashboard</span>
-                    </button>
+                    </Link>
                 </div>
 
                 <div>

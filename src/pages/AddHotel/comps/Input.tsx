@@ -10,7 +10,7 @@ type props = {
 export default function Input({ label, type = "text", value, onChange }: props) {
   return (
     <>
-      <label className="font-medium mb-1">{label}</label>
+      <label className="font-medium">{label}</label>
       <input
         type={type}
         value={value}

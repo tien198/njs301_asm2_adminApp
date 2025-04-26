@@ -1,8 +1,11 @@
-import { ChangeEventHandler, useState } from 'react'
+import { ChangeEventHandler, Dispatch, useState } from 'react'
 
-export default function use2wayBinding(init: any) {
-    const [state, setState] = useState(init)
-    const onChange: ChangeEventHandler<HTMLInputElement>
-        = (e) => setState(e.target.value)
-    return [state, setState, onChange]
-}
+const use2wayBinding: (init: any) => [any, Dispatch<any>, ChangeEventHandler<any>]
+    = (init) => {
+        const [state, setState] = useState(init)
+        const onChange: ChangeEventHandler<HTMLInputElement>
+            = (e) => setState(e.target.value)
+        return [state, setState, onChange]
+    }
+
+export default use2wayBinding
