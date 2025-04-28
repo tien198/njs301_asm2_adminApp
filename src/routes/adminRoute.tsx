@@ -36,7 +36,8 @@ const adminRouter: RouteObject = {
             path: AdminAppUri.addHotel,
             element: <Suspense fallback={<Fallback />}>
                 <AddHotel />
-            </Suspense>
+            </Suspense>,
+            loader: () => import('../pages/AddHotel').then(i => i.loader())
         }
     ]
 }

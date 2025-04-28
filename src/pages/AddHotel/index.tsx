@@ -1,4 +1,7 @@
+import { BackendAdminUri } from "../../utilities/enums/backendUri";
+import getWithToken from "../../utilities/fetchWithToken";
 import HotelForm from "./comps/HotelForm";
+import ILoader from "./dataModels/interfaces/Iloader";
 
 export default function AddHotel() {
     return (
@@ -11,4 +14,14 @@ export default function AddHotel() {
             </div>
         </>
     )
+}
+
+
+export function loader(): ILoader {
+    const roomTitles = getWithToken(BackendAdminUri.getRoomTitleList)
+    const typeNames = getWithToken(BackendAdminUri.getTypeNamesList)
+    return {
+        roomTitles, typeNames
+    }
+
 }

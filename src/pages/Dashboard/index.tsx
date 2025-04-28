@@ -2,10 +2,10 @@ import { LoaderFunctionArgs, useLoaderData } from "react-router";
 
 import ILoader from "./dataModels/ILoader";
 import { BackendAdminUri } from "../../utilities/enums/backendUri";
-import { getJwtToken } from "../../utilities/localStorageUtils/authenToken";
 
 import DashboardCards from "./comps/DashboardCard";
 import TransactionTable from "./comps/TransactionTable";
+import getWithToken from "../../utilities/fetchWithToken";
 
 
 
@@ -23,28 +23,13 @@ export default function Dashboard() {
 
 
 export function loader(args: LoaderFunctionArgs): ILoader {
-    const jwtToken = getJwtToken()
 
-    function getWithUri(uri: BackendAdminUri) {
-        return fetch(uri, { headers: { 'authorization': jwtToken! } })
-            .then(res => {
-                if (res.ok)
-                    return res.json()
-
-                return res.json()
-                    .then(err => { throw err })
-            }
-            ).catch(err => {
-                console.error(err)
-                return NaN
-            })
-    }
     // get infor from `BackendAdminUri`
-    const usersTotal = getWithUri(BackendAdminUri.getUsersTotal)
-    const transactionsTotal = getWithUri(BackendAdminUri.getTransactionsTotal)
-    const revenueTotal = getWithUri(BackendAdminUri.getRevenueTotal)
-    const balance = getWithUri(BackendAdminUri.getBalance)
-    const lastTransactions = getWithUri(BackendAdminUri.lastTransactions)
+    const usersTotal = getWithToken(BackendAdminUri.getUsersTotal)
+    const transactionsTotal = getWithToken(BackendAdminUri.getTransactionsTotal)
+    const revenueTotal = getWithToken(BackendAdminUri.getRevenueTotal)
+    const balance = getWithToken(BackendAdminUri.getBalance)
+    const lastTransactions = getWithToken(BackendAdminUri.lastTransactions)
 
     return {
         usersTotal, transactionsTotal, revenueTotal, balance, lastTransactions

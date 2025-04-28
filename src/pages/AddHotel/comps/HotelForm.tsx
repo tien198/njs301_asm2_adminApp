@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "./Input";
 import Select from "./Select";
 import FieldContainer from "./FieldContainer";
@@ -10,11 +10,14 @@ import { useAppDispath } from "../../../cusHooks/reduxHooks";
 import { setRooms } from '../../../store/slices/addProductFormSlice'
 import { useHotelFormDispatch, useHotelFormSelector } from "../cusHooks/useReduxStateManipulate";
 import useValidateFields from "../cusHooks/useValidateFields";
+import { useLoaderData } from "react-router";
+import ILoader, { IRoom, IType } from "../dataModels/interfaces/Iloader";
 
 
 
 export default function HotelForm() {
   const dispatch = useAppDispath()
+  const loader: ILoader = useLoaderData()
 
   const formFieldDatas = useHotelFormSelector()
   const { name, type, city, address, distance, title, price, desc, images, featured, rooms }
@@ -28,16 +31,30 @@ export default function HotelForm() {
   const { nameErrorMsg, cityErrorMsg, addressErrorMsg, distanceErrorMsg, titleErrorMsg, priceErrorMsg, descErrorMsg, imagesErrorMsg, roomsErrorMsg
   } = useValidateFields(formFieldDatas)
 
-  const types = ['Apartments', 'Resorts', 'Cabins', 'Hotels', 'Villas']
-  const typeOpts: IOption[] = types.map(i => ({ value: i }))
+
+  const [types, setTypes] = useState<IType[]>([{ _id: '', name: '' }])
+  useEffect(() => {
+    loader.typeNames.
+      then(typeNames => setTypes(typeNames))
+
+  }, [loader])
+  const typeOpts: IOption[] = types && types.map(i => ({ value: i._id, label: i.name }))
+
 
   const featuredOpts: IOption[] = [
     { label: 'Yes', value: true },
     { label: 'No', value: false },
   ]
 
-  const roomsIn = ['2 Bed Room', '1 Bed Room', 'Basement Double Room', 'Superior basement room', 'Deluxe Room',]
-  const roomsOpts: IOption[] = roomsIn.map(i => ({ value: i }))
+
+  const [roomsTiles, setRoomTitles] = useState<IRoom[]>([{ _id: '', title: '' }])
+  useEffect(() => {
+    loader.roomTitles
+      .then(roomTitles => setRoomTitles(roomTitles))
+  }, [loader])
+  const roomsOpts: IOption[] = roomsTiles.map(i => ({ value: i._id, label: i.title }))
+
+  
 
   const [isSubmit, setIsSubmit] = useState(false)
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
