@@ -1,9 +1,8 @@
-export type HotelType = 'Apartments' | 'Resorts' | 'Cabins' | 'Hotels' | 'Villas'
 export type HotelFeatured = 'true' | 'false'
 
 export default interface IAddHotelFormFieldsData {
     name: string
-    type: HotelType
+    type: string
     city: string
     address: string
     distance: string

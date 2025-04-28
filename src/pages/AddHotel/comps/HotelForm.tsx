@@ -13,6 +13,7 @@ import useValidateFields from "../cusHooks/useValidateFields";
 import { useLoaderData } from "react-router";
 import ILoader, { IRoom, IType } from "../dataModels/interfaces/Iloader";
 
+import submitAction from './hotelFormSubmitAction'
 
 
 export default function HotelForm() {
@@ -32,13 +33,14 @@ export default function HotelForm() {
   } = useValidateFields(formFieldDatas)
 
 
+  // set value for type select
   const [types, setTypes] = useState<IType[]>([{ _id: '', name: '' }])
   useEffect(() => {
     loader.typeNames.
       then(typeNames => setTypes(typeNames))
 
   }, [loader])
-  const typeOpts: IOption[] = types && types.map(i => ({ value: i._id, label: i.name }))
+  const typeOpts: IOption[] = types && types.map(i => ({ value: i.name }))
 
 
   const featuredOpts: IOption[] = [
@@ -46,26 +48,27 @@ export default function HotelForm() {
     { label: 'No', value: false },
   ]
 
-
-  const [roomsTiles, setRoomTitles] = useState<IRoom[]>([{ _id: '', title: '' }])
+  // set value for rooms select
+  const [roomsTitles, setRoomTitles] = useState<IRoom[]>([{ _id: '', title: '' }])
   useEffect(() => {
     loader.roomTitles
       .then(roomTitles => setRoomTitles(roomTitles))
   }, [loader])
-  const roomsOpts: IOption[] = roomsTiles.map(i => ({ value: i._id, label: i.title }))
+  const roomsOpts: IOption[] = roomsTitles && roomsTitles.map(i => ({ value: i._id, label: i.title }))
 
-  
+
 
   const [isSubmit, setIsSubmit] = useState(false)
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setIsSubmit(true)
-    const isNotValid = nameErrorMsg && cityErrorMsg && addressErrorMsg && distanceErrorMsg && titleErrorMsg && priceErrorMsg && descErrorMsg && imagesErrorMsg && roomsErrorMsg
+    const isNotValid = nameErrorMsg || cityErrorMsg || addressErrorMsg || distanceErrorMsg || titleErrorMsg || priceErrorMsg || descErrorMsg || imagesErrorMsg || roomsErrorMsg
 
     if (isNotValid)
       return console.log("Form has errors");
     // Handle form submission
-    console.log(formFieldDatas);
+    submitAction(formFieldDatas)
+
   }
 
   return (

@@ -23,5 +23,5 @@ export function loader(): ILoader {
     return {
         roomTitles, typeNames
     }
-
 }
+

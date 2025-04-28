@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import IAddHotelFormFieldsData, { HotelFeatured, HotelType } from '../../models/interfaces/IAddHotelFormFieldsData';
+import IAddHotelFormFieldsData, { HotelFeatured } from '../../models/interfaces/IAddHotelFormFieldsData';
 
 
 // const initialState: IAddHotelFormFieldsData = {
@@ -7,7 +7,7 @@ import IAddHotelFormFieldsData, { HotelFeatured, HotelType } from '../../models/
 // }
 
 const initialState: IAddHotelFormFieldsData = {
-    name: 'hotel Name', type: 'Apartments', city: 'Newyork', address: '1980 unknown', distance: '12', title: 'Hotel Del Luna', price: '1200', desc: 'Super Delux', images: 'https://image-uri', featured: 'false', rooms: ['Deluxe Room']
+    name: 'hotel Name', type: 'Apartments', city: 'Newyork', address: '1980 unknown', distance: '12', title: 'Hotel Del Luna', price: '1200', desc: 'Super Delux', images: 'https://image-uri', featured: 'false', rooms: ['']
 }
 
 const addProductFormSclice = createSlice({
@@ -17,7 +17,7 @@ const addProductFormSclice = createSlice({
         setName(state, action: PayloadAction<string>) {
             state.name = action.payload
         },
-        setType(state, action: PayloadAction<HotelType>) {
+        setType(state, action: PayloadAction<string>) {
             state.type = action.payload
         },
         setCity(state, action: PayloadAction<string>) {

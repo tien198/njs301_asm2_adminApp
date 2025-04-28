@@ -6,7 +6,6 @@ import { IUserInfo } from "../models/interfaces/IAuthenResponse"
 import { getJwtToken, getUserInfor } from "../utilities/localStorageUtils/authenToken"
 import { AdminAppUri_Absolute } from "../utilities/enums/adminAppUri"
 import IErrorResponse from "../models/interfaces/IErrorResponse";
-import { BackendAdminUri } from "../utilities/enums/backendUri";
 import ErrorResponse from "../models/implements/ErrorResponse";
 
 export default function AdminRoot() {
@@ -38,9 +37,8 @@ export async function loader() {
     } catch (err) {
         const er = err as IErrorResponse
         if (er.status === 401) {
-            const login = confirm('Unauthorize! Please log in admin user!')
-            if (login)
-                return redirect(AdminAppUri_Absolute.login)
+            alert('Unauthorize! Please log in admin user!')
+            return redirect(AdminAppUri_Absolute.login)
         }
         console.error(err)
     }

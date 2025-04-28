@@ -3,6 +3,7 @@ export enum BackendAdminUri {
     login = base + 'login/',
     signUp = base + 'sign-up/',
     admin = 'admin/',
+    addHotel = base + admin + 'add-hotel/',
     getUsersTotal = base + admin + 'get-users-total/',
     getTransactionsTotal = base + admin + 'get-transactions-total/',
     getRevenueTotal = base + admin + 'get-revenue-total/',
@@ -11,5 +12,5 @@ export enum BackendAdminUri {
     getHotelCount = base + admin + 'get-hotel-count/',
     getAdminHotels = base + admin + 'get-hotels/',
     getTypeNamesList = base + admin + 'get-type-names-list',
-    getRoomTitleList = base +admin+'get-room-titles-list/',
+    getRoomTitleList = base + admin + 'get-room-titles-list/',
 }
