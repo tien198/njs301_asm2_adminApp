@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react"
 import { useAppDispath, useAppSeletor } from "../../../cusHooks/reduxHooks"
-import IAddProductFormFieldsData, { HotelFeatured, HotelType } from "../../../models/interfaces/IAddHotelFormFieldsData"
+import IAddProductFormFieldsData, { HotelFeatured } from "../../../models/interfaces/IAddHotelFormFieldsData"
 import { setName, setType, setCity, setAddress, setDistance, setTitle, setPrice, setDesc, setImages, setFeatured, setRooms } from '../../../store/slices/addProductFormSlice'
 
 
@@ -28,7 +28,7 @@ export function useHotelFormSelector(): IAddProductFormFieldsData {
 export function useHotelFormDispatch() {
     const dispath = useAppDispath()
     const onChangeName = (e: ChangeEvent<HTMLInputElement>) => dispath(setName(e.target.value))
-    const onChangeType = (e: ChangeEvent<HTMLSelectElement>) => dispath(setType(e.target.value as HotelType))
+    const onChangeType = (e: ChangeEvent<HTMLSelectElement>) => dispath(setType(e.target.value))
     const onChangeCity = (e: ChangeEvent<HTMLInputElement>) => dispath(setCity(e.target.value))
     const onChangeAddress = (e: ChangeEvent<HTMLInputElement>) => dispath(setAddress(e.target.value))
     const onChangeDistance = (e: ChangeEvent<HTMLInputElement>) => dispath(setDistance(e.target.value))

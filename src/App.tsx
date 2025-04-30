@@ -6,6 +6,7 @@ import Root from './pages/AppRoot'
 
 import authenRoute from './routes/authenRoute'
 import adminRoute from './routes/adminRoute'
+import ErrorPage from './pages/ErrorPage'
 
 
 
@@ -13,8 +14,7 @@ const router = createBrowserRouter([
   {
     path: AdminAppUri.base,
     element: <Root />,
-    errorElement:
-      <div className='flex justify-center items-center h-screen'>NOT FOUND !</div>,
+    errorElement: <ErrorPage />,
     children: [
       adminRoute,
       authenRoute,
