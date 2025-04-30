@@ -1,16 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import IAddHotelFormFieldsData, { HotelFeatured } from '../../models/interfaces/IAddHotelFormFieldsData';
+import IHotelForm, { HotelFeatured } from '../../models/interfaces/IHotelForm';
 
 
-// const initialState: IAddHotelFormFieldsData = {
+// const initialState: IHotel = {
 //    name: '', type: 'Apartments', city: '', address: '', distance: '', title: '', price: '', desc: '', images: '', featured: 'false', rooms: []
 // }
 
-const initialState: IAddHotelFormFieldsData = {
-    name: 'hotel Name', type: 'Apartments', city: 'Newyork', address: '1980 unknown', distance: '12', title: 'Hotel Del Luna', price: '1200', desc: 'Super Delux', images: 'https://image-uri', featured: 'false', rooms: ['']
+const initialState: IHotelForm = {
+    name: '', type: '', city: '', address: '', distance: '', title: '', price: '', desc: '', images: '', featured: 'false', rooms: ['']
 }
 
-const addProductFormSclice = createSlice({
+const addHotelFormSclice = createSlice({
     name: 'addProductForm',
     initialState,
     reducers: {
@@ -50,8 +50,8 @@ const addProductFormSclice = createSlice({
     }
 })
 
-export default addProductFormSclice.reducer
+export default addHotelFormSclice.reducer
 
 export const {
     setName, setType, setCity, setAddress, setDistance, setTitle, setPrice, setDesc, setImages, setFeatured, setRooms
-} = addProductFormSclice.actions
+} = addHotelFormSclice.actions

@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import authenReducer from './slices/authenSlice'
-import addProductFormReducer from './slices/addProductFormSlice'
+import addHotelFormReducer from './slices/addHotelFormSlice'
+import addRoomFormReducer from './slices/addRoomFormSlice'
 
 const store = configureStore({
     reducer: {
         authen: authenReducer,
-        addProductForm: addProductFormReducer
+        addHotelForm: addHotelFormReducer,
+        addRoomForm: addRoomFormReducer
     }
 })
 

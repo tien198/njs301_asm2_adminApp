@@ -1,4 +1,4 @@
-import ILoader from "../dataModels/ILoader";
+import ILoader from "../dataModels/interfaces/ILoader";
 import ReactRouterAwait from "../../../components/ReactRouterAwait";
 
 type props = {

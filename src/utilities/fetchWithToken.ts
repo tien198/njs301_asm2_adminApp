@@ -1,7 +1,6 @@
-import { BackendAdminUri } from "./enums/backendUri"
 import { getJwtToken } from "./localStorageUtils/authenToken"
 
-export default function getWithToken(uri: BackendAdminUri, requestInit?: RequestInit) {
+export default function getWithToken(uri: string, requestInit?: RequestInit) {
     const jwtToken = getJwtToken()
     const reqInit = requestInit ?? { headers: { 'authorization': jwtToken } }
 

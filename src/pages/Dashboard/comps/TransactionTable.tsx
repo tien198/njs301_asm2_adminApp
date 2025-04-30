@@ -1,6 +1,6 @@
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import cssMod from './TransactionTable.module.css'
-import ITransaction from '../dataModels/ITransaction';
+import ITransaction from '../dataModels/interfaces/ITransaction';
 import ReactRouterAwait from '../../../components/ReactRouterAwait';
 import ExternalLib from '../../../utilities/ExternalLib'
 

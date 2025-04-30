@@ -3,7 +3,7 @@ import { MouseEventHandler, ReactNode } from 'react'
 type props = {
     value?: string
     children?: ReactNode
-    onClick: MouseEventHandler<HTMLButtonElement>
+    onClick?: MouseEventHandler<HTMLButtonElement>
 }
 
 export default function Button({ value, children, onClick }: props) {

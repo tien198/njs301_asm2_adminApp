@@ -1,6 +1,6 @@
 export type HotelFeatured = 'true' | 'false'
 
-export default interface IAddHotelFormFieldsData {
+export default interface IHotelForm {
     name: string
     type: string
     city: string

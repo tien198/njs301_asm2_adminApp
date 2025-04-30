@@ -1,6 +1,6 @@
 import { LoaderFunctionArgs, useLoaderData } from "react-router";
 
-import ILoader from "./dataModels/ILoader";
+import ILoader from "./dataModels/interfaces/ILoader";
 import { BackendAdminUri } from "../../utilities/enums/backendUri";
 
 import DashboardCards from "./comps/DashboardCard";

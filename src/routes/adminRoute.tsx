@@ -45,6 +45,7 @@ const adminRouter: RouteObject = {
             element: <Suspense fallback={<Fallback />}>
                 <AddRoom />
             </Suspense>,
+            loader: () => import('../pages/AddRoom').then(i => i.loader())
         }
     ]
 }

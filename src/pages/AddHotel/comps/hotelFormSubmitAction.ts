@@ -1,4 +1,4 @@
-import IAddHotelFormFieldsData from "../../../models/interfaces/IAddHotelFormFieldsData";
+import IAddHotelFormFieldsData from "../../../models/interfaces/IHotelForm";
 import { BackendAdminUri } from "../../../utilities/enums/backendUri";
 import { getJwtToken } from "../../../utilities/localStorageUtils/authenToken";
 import { AdminAppUri_Absolute } from "../../../utilities/enums/adminAppUri";

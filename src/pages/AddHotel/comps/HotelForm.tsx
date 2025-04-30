@@ -4,14 +4,14 @@ import Select from "../../../components/formLayout/Select";
 import FieldContainer from "../../../components/formLayout/FieldContainer";
 import ErrorMsg from "../../../components/ErrorMsg";
 
-import IOption from "../dataModels/interfaces/IOption";
+import IOption from "../../../models/interfaces/IOption";
 
 import { useAppDispath } from "../../../cusHooks/reduxHooks";
-import { setRooms } from '../../../store/slices/addProductFormSlice'
-import { useHotelFormDispatch, useHotelFormSelector } from "../cusHooks/useReduxStateManipulate";
+import { setRooms } from '../../../store/slices/addHotelFormSlice'
+import { useHotelFormBinding, useHotelSelector } from "../cusHooks/useReduxStateManipulate";
 import useValidateFields from "../cusHooks/useValidateFields";
 import { useLoaderData } from "react-router";
-import ILoader, { IRoom, IType } from "../dataModels/interfaces/Iloader";
+import ILoader from "../dataModels/interfaces/Iloader";
 
 import submitAction from './hotelFormSubmitAction'
 import Button from "../../../components/formLayout/Button";
@@ -21,13 +21,14 @@ export default function HotelForm() {
   const dispatch = useAppDispath()
   const loader: ILoader = useLoaderData()
 
-  const formFieldDatas = useHotelFormSelector()
+  const formFieldDatas = useHotelSelector()
   const { name, type, city, address, distance, title, price, desc, images, featured, rooms }
     = formFieldDatas
 
   // 2-way binding. All the field was stored in Redux state
-  const { onChangeName, onChangeType, onChangeCity, onChangeAddress, onChangeDistance, onChangeTitle, onChangePrice, onChangeDesc, onChangeImages, onChangeFeatured }
-    = useHotelFormDispatch()
+  const { onChangeName, onChangeType, onChangeCity, onChangeAddress, onChangeDistance, onChangeTitle, onChangePrice, onChangeDesc, onChangeImages, onChangeFeatured,
+    dispatchType }
+    = useHotelFormBinding()
 
   // validate fields
   const { nameErrorMsg, cityErrorMsg, addressErrorMsg, distanceErrorMsg, titleErrorMsg, priceErrorMsg, descErrorMsg, imagesErrorMsg, roomsErrorMsg
@@ -35,13 +36,15 @@ export default function HotelForm() {
 
 
   // set value for type select
-  const [types, setTypes] = useState<IType[]>([{ _id: '', name: '' }])
+  const [typeOpts, setTypeOpts] = useState<IOption[]>([{ value: '', label: '' }])
   useEffect(() => {
     loader.typeNames.
-      then(typeNames => setTypes(typeNames))
-
+      then(typeNames => {
+        const opts: IOption[] = typeNames.map(t => ({ value: t.name, label: t.name, id: t._id }))
+        setTypeOpts(opts)
+        dispatchType(opts[0].id!)
+      })
   }, [loader])
-  const typeOpts: IOption[] = types && types.map(i => ({ value: i.name }))
 
 
   const featuredOpts: IOption[] = [
@@ -50,12 +53,15 @@ export default function HotelForm() {
   ]
 
   // set value for rooms select
-  const [roomsTitles, setRoomTitles] = useState<IRoom[]>([{ _id: '', title: '' }])
+  const [roomsOpts, setRoomsOpts] = useState<IOption[]>([{ label: '', value: '' }])
   useEffect(() => {
     loader.roomTitles
-      .then(roomTitles => setRoomTitles(roomTitles))
+      .then(roomTitles => {
+        const opts: IOption[] = roomTitles.map(i => ({ value: i._id, label: i.title }))
+        setRoomsOpts(opts)
+      })
   }, [loader])
-  const roomsOpts: IOption[] = roomsTitles && roomsTitles.map(i => ({ value: i._id, label: i.title }))
+
 
 
 
@@ -81,7 +87,7 @@ export default function HotelForm() {
 
       <FieldContainer>
         <Select label="Type" value={type} onChange={onChangeType} options={typeOpts} />
-        {isSubmit && <ErrorMsg fontWeight="font-light" fontStyle="italic" msg='Make sure that you choose the type you need before submit' />}
+        {isSubmit && <ErrorMsg fontWeight="font-light" fontStyle="italic" textColor="text-amber-600" msg='Make sure that you choose the type you need before submit' />}
       </FieldContainer>
 
       <FieldContainer>
@@ -121,7 +127,7 @@ export default function HotelForm() {
 
       <FieldContainer>
         <Select label="Featured" value={featured} onChange={onChangeFeatured} options={featuredOpts} />
-        {isSubmit && <ErrorMsg fontWeight="font-light" fontStyle="italic" msg='Make sure the feature that you need before sumit' />}
+        {isSubmit && <ErrorMsg fontWeight="font-light" fontStyle="italic" textColor="text-amber-600" msg='Make sure the feature that you need before sumit' />}
       </FieldContainer>
 
       <div className="col-span-2">

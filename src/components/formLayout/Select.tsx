@@ -1,5 +1,5 @@
 import { SelectHTMLAttributes } from "react";
-import IOption from "../../pages/AddHotel/dataModels/interfaces/IOption";
+import IOption from "../../models/interfaces/IOption";
 
 
 interface props extends SelectHTMLAttributes<HTMLSelectElement> {

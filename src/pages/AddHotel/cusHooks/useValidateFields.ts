@@ -1,6 +1,6 @@
 import useValidate from '../../../cusHooks/useValidate'
 import { isNotNull } from "../../../cusHooks/useValidate/validateFuncs";
-import IAddProductFormFieldsData from "../../../models/interfaces/IAddHotelFormFieldsData";
+import IAddProductFormFieldsData from "../../../models/interfaces/IHotelForm";
 
 export default function useValidateFields(formFieldsData: IAddProductFormFieldsData) {
   // This hook is a placeholder for future validation logic

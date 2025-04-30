@@ -37,7 +37,7 @@ export default function Sidebar() {
                 <div>
                     <p className="text-gray-400 text-xs mb-2">USER</p>
                     <button className="flex items-center space-x-2 text-sm text-purple-700">
-                        <FaSignOutAlt /> <span>Logout</span>
+                        <FaSignOutAlt /> <Link to={AdminAppUri_Absolute.logout}>Logout</Link>
                     </button>
                 </div>
             </div>
