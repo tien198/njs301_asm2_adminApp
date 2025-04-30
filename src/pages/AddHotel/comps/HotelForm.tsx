@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Input from "../../../components/formLayout/Input";
 import Select from "../../../components/formLayout/Select";
 import FieldContainer from "../../../components/formLayout/FieldContainer";
-import ErrorMsg from "../../Authentication/comps/ErrorMsg";
+import ErrorMsg from "../../../components/ErrorMsg";
 
 import IOption from "../dataModels/interfaces/IOption";
 

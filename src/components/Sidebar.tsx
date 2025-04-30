@@ -21,7 +21,7 @@ export default function Sidebar() {
                     <ul className="space-y-2 text-sm">
                         <li className="flex items-center space-x-2 text-purple-700"><FaUser /> <span>Users</span></li>
                         <li className="flex items-center space-x-2 text-purple-700"><FaHotel /> <Link to={AdminAppUri_Absolute.hotelsManagement}>Hotels</Link></li>
-                        <li className="flex items-center space-x-2 text-purple-700"><FaHotel /> <Link to={AdminAppUri_Absolute.addRoom}>Rooms</Link></li>
+                        <li className="flex items-center space-x-2 text-purple-700"><FaHotel /> <Link to={'/'}>Rooms</Link></li>
                         <li className="flex items-center space-x-2 text-purple-700"><FaHotel /> <span>Transactions</span></li>
                     </ul>
                 </div>
@@ -29,8 +29,8 @@ export default function Sidebar() {
                 <div>
                     <p className="text-gray-400 text-xs mb-2">NEW</p>
                     <ul className="space-y-2 text-sm">
-                        <li className="flex items-center space-x-2 text-purple-700"><FaPlus /> <span>New Hotel</span></li>
-                        <li className="flex items-center space-x-2 text-purple-700"><FaPlus /> <span>New Room</span></li>
+                        <li className="flex items-center space-x-2 text-purple-700"><FaPlus /> <Link to={AdminAppUri_Absolute.addHotel}>New Hotel</Link></li>
+                        <li className="flex items-center space-x-2 text-purple-700"><FaPlus /> <Link to={AdminAppUri_Absolute.addRoom}>New Room</Link></li>
                     </ul>
                 </div>
 

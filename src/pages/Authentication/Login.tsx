@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Form, redirect, useActionData } from "react-router";
 import { ActionFunctionArgs } from "react-router";
 
-import ErrorMsg from "./comps/ErrorMsg";
+import ErrorMsg from "../../components/ErrorMsg";
 
 import { addJwt } from "../../utilities/localStorageUtils/authenToken";
 import { BackendAdminUri } from "../../utilities/enums/backendUri";
