@@ -9,6 +9,7 @@ import AdminRoot from "../pages/AdminRoot";
 const Dashboard = lazy(() => import("../pages/Dashboard"))
 const HotelManagement = lazy(() => import('../pages/HotelManagement'))
 const AddHotel = lazy(() => import('../pages/AddHotel'))
+const AddRoom = lazy(() => import('../pages/AddRoom'))
 
 
 
@@ -38,6 +39,12 @@ const adminRouter: RouteObject = {
                 <AddHotel />
             </Suspense>,
             loader: () => import('../pages/AddHotel').then(i => i.loader())
+        },
+        {
+            path: AdminAppUri.addRoom,
+            element: <Suspense fallback={<Fallback />}>
+                <AddRoom />
+            </Suspense>,
         }
     ]
 }

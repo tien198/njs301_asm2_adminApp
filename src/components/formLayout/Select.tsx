@@ -1,5 +1,5 @@
 import { SelectHTMLAttributes } from "react";
-import IOption from "../dataModels/interfaces/IOption";
+import IOption from "../../pages/AddHotel/dataModels/interfaces/IOption";
 
 
 interface props extends SelectHTMLAttributes<HTMLSelectElement> {
@@ -19,7 +19,7 @@ export default function Select(props: props) {
       >
         {
           options && options.map(opt =>
-            <option value={String(opt.value)}>
+            <option value={String(opt.value)} key={opt.id ?? String(opt.value)}>
               {opt.label ?? opt.value}
             </option>
           )

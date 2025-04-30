@@ -21,7 +21,7 @@ export default function Sidebar() {
                     <ul className="space-y-2 text-sm">
                         <li className="flex items-center space-x-2 text-purple-700"><FaUser /> <span>Users</span></li>
                         <li className="flex items-center space-x-2 text-purple-700"><FaHotel /> <Link to={AdminAppUri_Absolute.hotelsManagement}>Hotels</Link></li>
-                        <li className="flex items-center space-x-2 text-purple-700"><FaHotel /> <span>Rooms</span></li>
+                        <li className="flex items-center space-x-2 text-purple-700"><FaHotel /> <Link to={AdminAppUri_Absolute.addRoom}>Rooms</Link></li>
                         <li className="flex items-center space-x-2 text-purple-700"><FaHotel /> <span>Transactions</span></li>
                     </ul>
                 </div>

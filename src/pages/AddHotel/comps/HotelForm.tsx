@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Input from "./Input";
-import Select from "./Select";
-import FieldContainer from "./FieldContainer";
+import Input from "../../../components/formLayout/Input";
+import Select from "../../../components/formLayout/Select";
+import FieldContainer from "../../../components/formLayout/FieldContainer";
 import ErrorMsg from "../../Authentication/comps/ErrorMsg";
 
 import IOption from "../dataModels/interfaces/IOption";
@@ -14,6 +14,7 @@ import { useLoaderData } from "react-router";
 import ILoader, { IRoom, IType } from "../dataModels/interfaces/Iloader";
 
 import submitAction from './hotelFormSubmitAction'
+import Button from "../../../components/formLayout/Button";
 
 
 export default function HotelForm() {
@@ -137,9 +138,7 @@ export default function HotelForm() {
       </div>
 
       <div>
-        <button className="col-span-2 bg-teal-700 text-white py-2 px-20 rounded mt-4 hover:bg-teal-800">
-          Send
-        </button>
+        <Button onClick={() => null}>Send</Button>
       </div>
     </form>
   );
