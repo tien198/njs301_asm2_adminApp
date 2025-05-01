@@ -11,7 +11,7 @@ export default function Sidebar() {
             <div className="flex flex-col gap-7 mt-5">
                 <div>
                     <p className="text-gray-400 text-xs mb-2">MAIN</p>
-                    <Link to={AdminAppUri_Absolute.base} className="flex items-center space-x-2 text-sm text-purple-700">
+                    <Link to={AdminAppUri_Absolute.base} className="flex items-center gap-4 text-sm text-purple-700">
                         <FaHome /> <span>Dashboard</span>
                     </Link>
                 </div>
@@ -19,26 +19,24 @@ export default function Sidebar() {
                 <div>
                     <p className="text-gray-400 text-xs mb-2">LISTS</p>
                     <ul className="space-y-2 text-sm">
-                        <li className="flex items-center space-x-2 text-purple-700"><FaUser /> <span>Users</span></li>
-                        <li className="flex items-center space-x-2 text-purple-700"><FaHotel /> <Link to={AdminAppUri_Absolute.hotelsManagement}>Hotels</Link></li>
-                        <li className="flex items-center space-x-2 text-purple-700"><FaHotel /> <Link to={'/'}>Rooms</Link></li>
-                        <li className="flex items-center space-x-2 text-purple-700"><FaHotel /> <span>Transactions</span></li>
+                        <li><span className="flex items-center gap-4 text-purple-700"><FaUser /> Users</span></li>
+                        <li><Link to={AdminAppUri_Absolute.hotelsManagement} className="flex items-center gap-4 text-purple-700"><FaHotel /> Hotels</Link></li>
+                        <li><Link to={AdminAppUri_Absolute.roomsManagement} className="flex items-center gap-4 text-purple-700"><FaHotel /> Rooms</Link></li>
+                        <li><Link to={AdminAppUri_Absolute.transManagement} className="flex items-center gap-4 text-purple-700"><FaHotel /> Transactions</Link></li>
                     </ul>
                 </div>
 
                 <div>
                     <p className="text-gray-400 text-xs mb-2">NEW</p>
                     <ul className="space-y-2 text-sm">
-                        <li className="flex items-center space-x-2 text-purple-700"><FaPlus /> <Link to={AdminAppUri_Absolute.addHotel}>New Hotel</Link></li>
-                        <li className="flex items-center space-x-2 text-purple-700"><FaPlus /> <Link to={AdminAppUri_Absolute.addRoom}>New Room</Link></li>
+                        <li ><Link to={AdminAppUri_Absolute.addHotel} className="flex items-center gap-4 text-purple-700"><FaPlus /> New Hotel</Link></li>
+                        <li ><Link to={AdminAppUri_Absolute.addRoom} className="flex items-center gap-4 text-purple-700"><FaPlus /> New Room</Link></li>
                     </ul>
                 </div>
 
                 <div>
                     <p className="text-gray-400 text-xs mb-2">USER</p>
-                    <button className="flex items-center space-x-2 text-sm text-purple-700">
-                        <FaSignOutAlt /> <Link to={AdminAppUri_Absolute.logout}>Logout</Link>
-                    </button>
+                    <Link to={AdminAppUri_Absolute.logout} className="flex items-center gap-4 text-sm text-purple-700"><FaSignOutAlt /> Logout</Link>
                 </div>
             </div>
         </div>

@@ -9,7 +9,9 @@ import AdminRoot from "../pages/AdminRoot";
 const Dashboard = lazy(() => import("../pages/Dashboard"))
 const HotelManagement = lazy(() => import('../pages/HotelManagement'))
 const AddHotel = lazy(() => import('../pages/AddHotel'))
+const RoomManagement = lazy(() => import('../pages/RoomManagement'))
 const AddRoom = lazy(() => import('../pages/AddRoom'))
+const TransactionManagement = lazy(() => import('../pages/TransactionManagement'))
 
 
 
@@ -41,11 +43,25 @@ const adminRouter: RouteObject = {
             loader: () => import('../pages/AddHotel').then(i => i.loader())
         },
         {
+            path: AdminAppUri.roomsManagement,
+            element: <Suspense fallback={<Fallback />}>
+                <RoomManagement />
+            </Suspense>,
+            loader: () => import('../pages/RoomManagement').then(i => i.loader())
+        },
+        {
             path: AdminAppUri.addRoom,
             element: <Suspense fallback={<Fallback />}>
                 <AddRoom />
             </Suspense>,
             loader: () => import('../pages/AddRoom').then(i => i.loader())
+        },
+        {
+            path: AdminAppUri.transManagement,
+            element: <Suspense fallback={<Fallback />}>
+                <TransactionManagement />
+            </Suspense>,
+            loader: () => import('../pages/TransactionManagement').then(i => i.loader())
         }
     ]
 }

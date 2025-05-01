@@ -10,7 +10,7 @@ export default function DashboardCards({ loader }: props) {
     // titleArr sort by ILoader properties order
     const titleArr = ['Users', 'Orders', 'Earnings', 'Balance']
     // the index of `keys` match to index of `titleArr`
-    const keys = Object.keys(loader)
+    const keys = Object.keys(loader) as (keyof ILoader)[]
     return (
         <div className="grid grid-cols-4 gap-6 mb-10">
             {titleArr.map((title, i) => (

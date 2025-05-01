@@ -1,3 +1,5 @@
+import styleCSS from './Table.module.scss'
+
 type props = {
     headers: string[]
     children?: React.ReactNode
@@ -5,21 +7,19 @@ type props = {
 
 export default function Table({ headers, children }: props) {
     return (
-        <table className="w-full text-sm mt-4">
-            <thead className="text-left bg-gray-100">
-                <tr className="h-14">
+        <table className={styleCSS.table}>
+            <thead>
+                <tr>
                     <th><input type="checkbox" /></th>
                     {headers.map((header) =>
                         <th key={header+Math.random().toFixed(3)}>{header}</th>
                     )}
                 </tr>
             </thead>
-            <tbody>
 
-                {/* The body will be filled by the child component */}
+                {/* children is <tbody> and <tfoot> */}
                 {children}
                 
-            </tbody>
         </table>
     )
 }

@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs, useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 
 import ILoader from "./dataModels/interfaces/ILoader";
 import { BackendAdminUri } from "../../utilities/enums/backendUri";
@@ -22,7 +22,7 @@ export default function Dashboard() {
 }
 
 
-export function loader(args: LoaderFunctionArgs): ILoader {
+export function loader(): ILoader {
 
     // get infor from `BackendAdminUri`
     const usersTotal = getWithToken(BackendAdminUri.getUsersTotal)

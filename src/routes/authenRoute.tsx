@@ -5,7 +5,7 @@ import Login from '../pages/Authentication/Login';
 import SignUp from '../pages/Authentication/Signup';
 
 const authenRouter: RouteObject = {
-    path: '/authen',
+    path: AdminAppUri.authen,
     element: <><Outlet /></>,
     children: [
         {

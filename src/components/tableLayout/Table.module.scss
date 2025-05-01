@@ -1,0 +1,30 @@
+table {
+    text-align: left;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+thead {
+    background-color: oklch(96.7% 0.003 264.542);
+
+    tr {
+        height: 5rem;
+    }
+}
+
+tbody {
+    tr {
+        height: 4.75rem;
+        border-bottom: 1px solid #3333;
+
+        &:hover {
+            background-color: oklch(96.7% 0.003 264.542);
+        }
+    }
+}
+
+th,
+td {
+    padding-left: 1.5rem;
+    padding-right: .5rem;
+}

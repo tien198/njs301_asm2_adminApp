@@ -1,3 +1,5 @@
+import { Status } from "../../../../components/StatusBage"
+
 export default interface ITransaction {
     _id: string
     user: {
@@ -13,5 +15,5 @@ export default interface ITransaction {
     endDate: string
     price: number
     payment: string
-    status: string
+    status: Status
 }
