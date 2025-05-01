@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import IHotel from "../dataModels/IHotel";
+import IHotel from "../dataModels/interfaces/IHotel";
 
 type props = { hotel: IHotel }
 

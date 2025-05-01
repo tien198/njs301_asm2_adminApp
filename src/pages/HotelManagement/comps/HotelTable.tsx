@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router";
 import ReactRouterAwait from "../../../components/ReactRouterAwait";
-import IHotel from "../dataModels/IHotel";
+import IHotel from "../dataModels/interfaces/IHotel";
 import HotelRow from "./HotelRow";
 import Fallback from "../../../components/Fallback";
 
