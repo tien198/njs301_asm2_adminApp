@@ -10,11 +10,11 @@ export default function RoomRow({ room }: props) {
         <tr>
             <td><input type="checkbox" /></td>
             <td>{room._id}</td>
-            <td>{room.desc}</td>
-            <td>{room.maxPeople}</td>
-            <td>{room.price}</td>
-            <td>{room.roomNumbers?.join(', ')}</td>
             <td>{room.title}</td>
+            <td>{room.desc}</td>
+            <td>{room.price}</td>
+            <td>{room.maxPeople}</td>
+            <td>{room.roomNumbers?.join(', ')}</td>
             <td><Link to={''} className="text-red-500 border border-red-500 px-2 py-1 rounded hover:bg-red-100">Delete</Link></td>
         </tr>
     )

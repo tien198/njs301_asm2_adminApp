@@ -9,7 +9,7 @@ import PaginationInfor from "../../../components/PaginationInfor";
 export default function RoomTable() {
     const loader: ILoader = useLoaderData()
     return (
-        <Table headers={['Id', 'Description', 'Max People', 'Price', 'Room Numbers', 'Title', 'Action']}>
+        <Table headers={['Id', 'Title', 'Description', 'Price', 'Max People', 'Room Numbers', 'Action']}>
             <tbody>
                 <ReactRouterAwait resoleve={loader.rooms} fallback={<tr><td>Loading...</td></tr>}>
                     {(rooms: LoaderResult) => rooms?.map(room =>
