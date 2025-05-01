@@ -1,8 +1,8 @@
 import useValidate from '../../../cusHooks/useValidate'
 import { isNotNull } from "../../../cusHooks/useValidate/validateFuncs";
-import IAddProductFormFieldsData from "../../../models/interfaces/IHotelForm";
+import IHotelForm from "../../../models/interfaces/IHotelForm";
 
-export default function useValidateFields(formFieldsData: IAddProductFormFieldsData) {
+export default function useValidateFields(formFieldsData: IHotelForm) {
   // This hook is a placeholder for future validation logic
   const nameErrorMsg = useValidate('Name', formFieldsData.name, [isNotNull])
   const cityErrorMsg = useValidate('City', formFieldsData.city, [isNotNull])

@@ -4,6 +4,7 @@ export enum BackendAdminUri {
     signUp = base + 'sign-up/',
     admin = 'admin/',
     addHotel = base + admin + 'add-hotel/',
+    addRoom = base + admin + 'add-room/',
     getUsersTotal = base + admin + 'get-users-total/',
     getTransactionsTotal = base + admin + 'get-transactions-total/',
     getRevenueTotal = base + admin + 'get-revenue-total/',
