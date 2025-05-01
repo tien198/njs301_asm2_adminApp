@@ -1,3 +1,4 @@
+import { LoaderFunctionArgs } from "react-router";
 import { BackendAdminUri } from "../../utilities/enums/backendUri";
 import getWithToken from "../../utilities/fetchWithToken";
 import TransTable from "./comps/TransTable";
@@ -15,10 +16,13 @@ export default function TransManagement() {
     );
 }
 
-export function loader(): ILoader {
-    const trans = getWithToken(BackendAdminUri.getTransactions)
-    
-    return {
-        trans
-    }
+export function loader(args: LoaderFunctionArgs): ILoader {
+    const param = args.request.url.split('?')[1]
+    const searchParams = new URLSearchParams(param)
+    const page = searchParams.get('page') || '0'
+    const limit = searchParams.get('limit') || '10'
+
+    const trans = getWithToken(BackendAdminUri.getTransactions + `?page=${page}&limit=${limit}`)
+
+    return { trans }
 }

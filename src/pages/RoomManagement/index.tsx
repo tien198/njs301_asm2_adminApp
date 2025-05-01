@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, LoaderFunctionArgs } from "react-router";
 import { AdminAppUri_Absolute } from "../../utilities/enums/adminAppUri";
 import RoomTable from "./comps/RoomTable";
 import getWithToken from "../../utilities/fetchWithToken";
@@ -17,7 +17,12 @@ export default function RoomManagement() {
     );
 }
 
-export function loader(): ILoader {
-    const rooms = getWithToken(BackendAdminUri.getAdminRooms)
+export function loader(args: LoaderFunctionArgs): ILoader {
+    const param = args.request.url.split('?')[1]
+    const searchParams = new URLSearchParams(param)
+    const page = searchParams.get('page') || '0'
+    const limit = searchParams.get('limit') || '10'
+
+    const rooms = getWithToken(BackendAdminUri.getAdminRooms + `?page=${page}&limit=${limit}`)
     return { rooms }
 }

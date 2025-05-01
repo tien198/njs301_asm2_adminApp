@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, LoaderFunctionArgs } from "react-router";
 import { BackendAdminUri } from "../../utilities/enums/backendUri";
 import { AdminAppUri_Absolute } from "../../utilities/enums/adminAppUri";
 import HotelTable from "./comps/HotelTable";
@@ -18,8 +18,13 @@ export default function HotelList() {
     );
 }
 
-export function loader(): ILoader {
-    const hotels = getWithToken(BackendAdminUri.getAdminHotels)
+export function loader(args: LoaderFunctionArgs): ILoader {
+    const param = args.request.url.split('?')[1]
+    const searchParams = new URLSearchParams(param)
+    const page = searchParams.get('page') || '0'
+    const limit = searchParams.get('limit') || '10'
+
+    const hotels = getWithToken(BackendAdminUri.getAdminHotels+ `?page=${page}&limit=${limit}`)
 
     return {
         hotels

@@ -26,14 +26,14 @@ const adminRouter: RouteObject = {
             element: <Suspense fallback={<Fallback />}>
                 <Dashboard />
             </Suspense>,
-            loader: args => import('../pages/Dashboard').then(i => i.loader(args))
+            loader: () => import('../pages/Dashboard').then(i => i.loader())
         },
         {
             path: AdminAppUri.hotelsManagement,
             element: <Suspense fallback={<Fallback />}>
                 <HotelManagement />
             </Suspense>,
-            loader: () => import('../pages/HotelManagement').then(i => i.loader())
+            loader: args => import('../pages/HotelManagement').then(i => i.loader(args))
         },
         {
             path: AdminAppUri.addHotel,
@@ -47,7 +47,7 @@ const adminRouter: RouteObject = {
             element: <Suspense fallback={<Fallback />}>
                 <RoomManagement />
             </Suspense>,
-            loader: () => import('../pages/RoomManagement').then(i => i.loader())
+            loader: args => import('../pages/RoomManagement').then(i => i.loader(args))
         },
         {
             path: AdminAppUri.addRoom,
@@ -61,7 +61,7 @@ const adminRouter: RouteObject = {
             element: <Suspense fallback={<Fallback />}>
                 <TransactionManagement />
             </Suspense>,
-            loader: () => import('../pages/TransactionManagement').then(i => i.loader())
+            loader: args => import('../pages/TransactionManagement').then(i => i.loader(args))
         }
     ]
 }
