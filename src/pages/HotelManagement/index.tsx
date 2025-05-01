@@ -4,6 +4,9 @@ import { getJwtToken } from "../../utilities/localStorageUtils/authenToken";
 import IErrorResponse from "../../models/interfaces/IErrorResponse";
 import { AdminAppUri_Absolute } from "../../utilities/enums/adminAppUri";
 import HotelTable from "./comps/HotelTable";
+import getWithToken from "../../utilities/fetchWithToken";
+import ILoader from "./dataModels/interfaces/ILoader";
+import IHotel from "./dataModels/interfaces/IHotel";
 
 export default function HotelList() {
 
@@ -18,22 +21,10 @@ export default function HotelList() {
     );
 }
 
-export async function loader() {
-    const jwtToken = getJwtToken()
-    try {
-        if (!jwtToken)
-            return
+export function loader(): ILoader {
+    const hotels = getWithToken(BackendAdminUri.getAdminHotels)
 
-        const res = await fetch(BackendAdminUri.getAdminHotels, {
-            headers: { 'authorization': jwtToken }
-        })
-
-        const data = res.json()
-        if (!res.ok)
-            throw await data as IErrorResponse
-
-        return data
-    } catch (err) {
-        console.error(err)
+    return {
+        hotels
     }
 }

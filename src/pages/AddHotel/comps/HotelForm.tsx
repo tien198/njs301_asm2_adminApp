@@ -40,9 +40,11 @@ export default function HotelForm() {
   useEffect(() => {
     loader.typeNames.
       then(typeNames => {
-        const opts: IOption[] = typeNames.map(t => ({ value: t.name, label: t.name, id: t._id }))
+        const opts: IOption[] = typeNames
+          ? typeNames.map(t => ({ value: t.name, label: t.name, id: t._id }))
+          : []
         setTypeOpts(opts)
-        dispatchType(opts[0].id!)
+        dispatchType(opts[0]?.id!)
       })
   }, [loader])
 
@@ -57,7 +59,9 @@ export default function HotelForm() {
   useEffect(() => {
     loader.roomTitles
       .then(roomTitles => {
-        const opts: IOption[] = roomTitles.map(i => ({ value: i._id, label: i.title }))
+        const opts: IOption[] = roomTitles
+          ? roomTitles.map(i => ({ value: i._id, label: i.title }))
+          : []
         setRoomsOpts(opts)
       })
   }, [loader])

@@ -4,12 +4,13 @@ import { Await } from "react-router"
 
 type awaitProps = {
     resoleve: Promise<any>,
-    children: ReactNode | ((val: any) => ReactNode) | ReactNode[] | ((val: any) => ReactNode[])
+    fallback?: ReactNode,
+    children: ReactNode | ((val: any) => ReactNode | ReactNode[])
 }
 
 
-export default function ReactRouterAwait({ resoleve, children }: awaitProps) {
-    return <Suspense fallback={<Fallback />}>
+export default function ReactRouterAwait({ resoleve, fallback, children }: awaitProps) {
+    return <Suspense fallback={fallback ?? <Fallback />}>
         <Await resolve={resoleve}>
             {children}
         </Await>

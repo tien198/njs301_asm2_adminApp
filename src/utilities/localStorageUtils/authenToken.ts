@@ -1,5 +1,5 @@
 import StorageEnum from '../enums/storageEnum'
-import AuthRes from '../../models/interfaces/IAuthenResponse'
+import AuthRes, { IUserInfo } from '../../models/interfaces/IAuthenResponse'
 
 
 export function addJwt(authRes: AuthRes) {
@@ -11,13 +11,13 @@ export function getJwtToken() {
     return localStorage.getItem(StorageEnum.authenToken) || ''
 }
 
-export function getUserInfor() {
+export function getUserInfor(): IUserInfo {
     const inforJson = localStorage.getItem(StorageEnum.userInfor)
-    return inforJson
+    const userInfor = JSON.parse(inforJson!)
+    return userInfor
 }
 
-
-export function removeJwt() {
-    localStorage.removeItem(StorageEnum.authenToken)
-    localStorage.removeItem(StorageEnum.userInfor)
-}
+    export function removeJwt() {
+        localStorage.removeItem(StorageEnum.authenToken)
+        localStorage.removeItem(StorageEnum.userInfor)
+    }

@@ -2,6 +2,9 @@ import { getJwtToken } from "./localStorageUtils/authenToken"
 
 export default function getWithToken(uri: string, requestInit?: RequestInit) {
     const jwtToken = getJwtToken()
+    if (!jwtToken)
+        return Promise.resolve(undefined)
+
     const reqInit = requestInit ?? { headers: { 'authorization': jwtToken } }
 
     return fetch(uri, reqInit)
@@ -14,6 +17,6 @@ export default function getWithToken(uri: string, requestInit?: RequestInit) {
         }
         ).catch(err => {
             console.error(err)
-            return NaN
+        return Promise.resolve(undefined)
         })
 }

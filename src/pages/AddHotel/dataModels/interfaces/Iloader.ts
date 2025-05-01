@@ -1,6 +1,6 @@
 export default interface ILoader {
-    roomTitles: Promise<IRoom[]>
-    typeNames: Promise<IType[]>
+    roomTitles: Promise<IRoom[] | undefined>
+    typeNames: Promise<IType[] | undefined>
 }
 
 export interface IRoom {

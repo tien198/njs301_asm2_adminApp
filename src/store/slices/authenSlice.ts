@@ -1,17 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { IUserInfo } from '../../models/interfaces/IAuthenResponse'
+import IAuthenResponse from '../../models/interfaces/IAuthenResponse'
 
-const initialState: IUserInfo = {
-    isAdmin: false
+const initialState: IAuthenResponse = {
+    token: '',
+    user: {
+        isAdmin: false
+    }
 }
 
 const authenSlice = createSlice({
     name: 'authen',
     initialState,
     reducers: {
-        setAuthen: (state, action: PayloadAction<IUserInfo>) => {
-            state = action.payload
+        setAuthen: (state, action: PayloadAction<IAuthenResponse>) => {
+            return action.payload
         }
     }
 })
