@@ -15,10 +15,13 @@ const authenSlice = createSlice({
     reducers: {
         setAuthen: (state, action: PayloadAction<IAuthenResponse>) => {
             return action.payload
+        },
+        resetAuthen: () => {
+            return initialState
         }
     }
 })
 
 export default authenSlice.reducer
 
-export const { setAuthen } = authenSlice.actions
+export const { setAuthen, resetAuthen } = authenSlice.actions

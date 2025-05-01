@@ -8,7 +8,7 @@ import IErrorResponse from "../models/interfaces/IErrorResponse";
 import ErrorResponse from "../models/implements/ErrorResponse";
 import { useEffect } from "react";
 import { useAppSeletor } from "../cusHooks/reduxHooks";
-import AuthenResponse from "../models/implements/AuthenResponse";
+import IAuthenResponse from "../models/interfaces/IAuthenResponse";
 
 export default function AdminRoot() {
     // check logged in user
@@ -42,9 +42,9 @@ export async function loader() {
         if (!token)
             throw new ErrorResponse('Not found jwt token in client!', 401)
 
-        const authen = new AuthenResponse(token, userInfor)
+        const authen: IAuthenResponse = { token, user: userInfor }
 
-        userInfor && store.dispatch(setAuthen(authen))
+        token && userInfor && store.dispatch(setAuthen(authen))
 
     } catch (err) {
         const er = err as IErrorResponse

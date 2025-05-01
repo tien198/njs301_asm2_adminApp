@@ -1,11 +1,12 @@
 import { Link } from "react-router";
 import IHotel from "../dataModels/interfaces/IHotel";
+import Tr from "../../../components/tableLayout/Tr";
 
 type props = { hotel: IHotel }
 
 export default function HotelRow({ hotel }: props) {
     return (
-        <tr className="border-b h-14 hover:bg-gray-50">
+        <Tr>
             <td><input type="checkbox" /></td>
             <td>{hotel?._id}</td>
             <td>{hotel?.name}</td>
@@ -13,6 +14,6 @@ export default function HotelRow({ hotel }: props) {
             <td>{hotel?.name}</td>
             <td>{hotel?.city}</td>
             <td><Link to={''} className="text-red-500 border border-red-500 px-2 py-1 rounded hover:bg-red-100">Delete</Link></td>
-        </tr>
+        </Tr>
     );
 }
