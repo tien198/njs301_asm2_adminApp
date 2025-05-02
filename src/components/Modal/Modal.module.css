@@ -13,8 +13,8 @@
   top: 2.5vh;
   left: 2.5vw;
   width: 95%;
-  /* max-height: 85vh; */
-  height: 95vh;
+  height: max-content;
+  max-height: 85vh;
   overflow: auto;
   background-color: white;
   padding: 1rem;
@@ -23,14 +23,6 @@
   z-index: 70;
   animation: slide-down 300ms ease-out forwards;
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -55,23 +47,6 @@
 
 
 
-.fading-hidden {
-  animation: fade-hidden 300ms ease-out forwards;
-}
-
-@keyframes fade-hidden {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    display: none;
-  }
-}
-
-
-
-
 
 
 
@@ -83,6 +58,7 @@
 @media (min-width: 768px) {
   .modal {
     top: 5vh;
+    height: max-content;
     max-height: 50rem;
     padding: 3rem;
   }
@@ -93,6 +69,7 @@
     top: 10vh;
     width: 60rem;
     height: 80vh;
+    height: max-content;
     left: calc(50% - 30rem);
     padding: 5rem;
   }

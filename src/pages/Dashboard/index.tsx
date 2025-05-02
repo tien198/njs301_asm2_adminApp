@@ -6,6 +6,7 @@ import { BackendAdminUri } from "../../utilities/enums/backendUri";
 import DashboardCards from "./comps/DashboardCard";
 import TransactionTable from "./comps/TransactionTable";
 import getWithToken from "../../utilities/fetchWithToken";
+import { initialLoaderAdminPages } from "../AdminRoot";
 
 
 
@@ -23,6 +24,7 @@ export default function Dashboard() {
 
 
 export function loader(): ILoader {
+    initialLoaderAdminPages()
 
     // get infor from `BackendAdminUri`
     const usersTotal = getWithToken(BackendAdminUri.getUsersTotal)

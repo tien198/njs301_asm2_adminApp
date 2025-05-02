@@ -18,8 +18,6 @@ const TransactionManagement = lazy(() => import('../pages/TransactionManagement'
 const adminRouter: RouteObject = {
     path: '/',
     element: <AdminRoot />,
-    // initialize entire app states in hear
-    loader: () => import('../pages/AdminRoot').then(i => i.loader()),
     children: [
         {
             index: true,

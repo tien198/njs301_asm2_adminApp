@@ -4,6 +4,7 @@ import { AdminAppUri_Absolute } from "../../utilities/enums/adminAppUri";
 import HotelTable from "./comps/HotelTable";
 import getWithToken from "../../utilities/fetchWithToken";
 import ILoader from "./dataModels/interfaces/ILoader";
+import { initialLoaderAdminPages } from "../AdminRoot";
 
 export default function HotelList() {
 
@@ -19,6 +20,8 @@ export default function HotelList() {
 }
 
 export function loader(args: LoaderFunctionArgs): ILoader {
+    initialLoaderAdminPages()
+    
     const param = args.request.url.split('?')[1]
     const searchParams = new URLSearchParams(param)
     const page = searchParams.get('page') || '0'

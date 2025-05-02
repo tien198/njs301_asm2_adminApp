@@ -1,23 +1,14 @@
-import { Outlet, redirect } from "react-router";
+import { Outlet } from "react-router";
 import Sidebar from "../components/Sidebar";
 import store from "../store"
 import { setAuthen } from "../store/slices/authenSlice"
 import { getJwtToken, getUserInfor } from "../utilities/localStorageUtils/authenToken"
-import { AdminAppUri_Absolute } from "../utilities/enums/adminAppUri"
 import IErrorResponse from "../models/interfaces/IErrorResponse";
 import ErrorResponse from "../models/implements/ErrorResponse";
-import { useEffect } from "react";
-import { useAppSelector } from "../cusHooks/reduxHooks";
 import IAuthenResponse from "../models/interfaces/IAuthenResponse";
+import { setModalInfors, showModal } from "../store/slices/modalSlice";
 
 export default function AdminRoot() {
-    // check logged in user
-    // if not, redirect to login
-    const jwtToken = useAppSelector(state => state.authen.token)
-    useEffect(() => {
-        if (!jwtToken)
-            window.location.href = AdminAppUri_Absolute.login
-    }, [jwtToken])
 
     return (
         <>
@@ -34,8 +25,10 @@ export default function AdminRoot() {
 
 
 
-// initialize entire app states in hear
-export async function loader() {
+/**
+ * this loader is called each time any admin page is loaded
+ */
+export function initialLoaderAdminPages() {
     const token = getJwtToken()
     const userInfor = getUserInfor()
     try {
@@ -46,12 +39,12 @@ export async function loader() {
 
         token && userInfor && store.dispatch(setAuthen(authen))
 
-    } catch (err) {
-        const er = err as IErrorResponse
+    } catch (error) {
+        const er = error as IErrorResponse
         if (er.status === 401) {
-            alert('Unauthorize! Please log in admin user!')
-            return redirect(AdminAppUri_Absolute.login)
+            store.dispatch(setModalInfors(er))
+            store.dispatch(showModal())
         }
-        console.error(err)
+        console.error(error)
     }
 }

@@ -1,6 +1,7 @@
 import SectionTitle from '../../components/SectionTitle';
 import { BackendAdminUri } from '../../utilities/enums/backendUri';
 import getWithToken from '../../utilities/fetchWithToken';
+import { initialLoaderAdminPages } from '../AdminRoot';
 import HotelForm from './comps/HotelForm';
 import ILoader from './dataModels/interfaces/Iloader';
 
@@ -17,6 +18,8 @@ export default function AddHotel() {
 
 
 export function loader(): ILoader {
+    initialLoaderAdminPages()
+    
     const roomTitles = getWithToken(BackendAdminUri.getRoomTitleList)
     const typeNames = getWithToken(BackendAdminUri.getTypeNamesList)
     return {

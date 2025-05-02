@@ -4,6 +4,7 @@ import RoomTable from "./comps/RoomTable";
 import getWithToken from "../../utilities/fetchWithToken";
 import { BackendAdminUri } from "../../utilities/enums/backendUri";
 import ILoader from "./dataModels/interfaces/ILoader";
+import { initialLoaderAdminPages } from "../AdminRoot";
 
 export default function RoomManagement() {
     return (
@@ -18,6 +19,8 @@ export default function RoomManagement() {
 }
 
 export function loader(args: LoaderFunctionArgs): ILoader {
+    initialLoaderAdminPages()
+    
     const param = args.request.url.split('?')[1]
     const searchParams = new URLSearchParams(param)
     const page = searchParams.get('page') || '0'

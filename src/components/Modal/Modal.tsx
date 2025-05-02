@@ -1,7 +1,7 @@
 import { PropsWithChildren, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useAppDispatch, useAppSelector } from "../../cusHooks/reduxHooks";
-import { setHidden as fadingHide } from "../../store/slices/modalSlice";
+import { setModalHidden as fadingHide } from "../../store/slices/modalSlice";
 import { FaXmark } from 'react-icons/fa6'
 
 // css
@@ -11,7 +11,7 @@ import classes from './Modal.module.css'
 export function useHideModal() {
     const dispath = useAppDispatch()
     return () => {
-        dispath(fadingHide(classes['fading-hidden']))
+        dispath(fadingHide('fading-hidden'))
     }
 }
 

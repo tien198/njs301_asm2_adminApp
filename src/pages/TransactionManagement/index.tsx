@@ -3,6 +3,7 @@ import { BackendAdminUri } from "../../utilities/enums/backendUri";
 import getWithToken from "../../utilities/fetchWithToken";
 import TransTable from "./comps/TransTable";
 import { ILoader } from "./dataModels/interfaces/ILoader";
+import { initialLoaderAdminPages } from "../AdminRoot";
 
 export default function TransManagement() {
 
@@ -17,6 +18,8 @@ export default function TransManagement() {
 }
 
 export function loader(args: LoaderFunctionArgs): ILoader {
+    initialLoaderAdminPages()
+    
     const param = args.request.url.split('?')[1]
     const searchParams = new URLSearchParams(param)
     const page = searchParams.get('page') || '0'
