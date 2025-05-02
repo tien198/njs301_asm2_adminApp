@@ -6,7 +6,7 @@ import ErrorMsg from "../../../components/ErrorMsg";
 
 import IOption from "../../../models/interfaces/IOption";
 
-import { useAppDispath } from "../../../cusHooks/reduxHooks";
+import { useAppDispatch } from "../../../cusHooks/reduxHooks";
 import { setRooms } from '../../../store/slices/addHotelFormSlice'
 import { useHotelFormBinding, useHotelSelector } from "../cusHooks/useReduxStateManipulate";
 import useValidateFields from "../cusHooks/useValidateFields";
@@ -18,7 +18,7 @@ import Button from "../../../components/formLayout/Button";
 
 
 export default function HotelForm() {
-  const dispatch = useAppDispath()
+  const dispatch = useAppDispatch()
   const loader: ILoader = useLoaderData()
 
   const formFieldDatas = useHotelSelector()

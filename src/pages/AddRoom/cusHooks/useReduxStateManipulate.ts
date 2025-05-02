@@ -1,15 +1,15 @@
 import { ChangeEvent } from "react";
-import { useAppDispath, useAppSeletor } from "../../../cusHooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../../cusHooks/reduxHooks";
 import IRoomForm from "../../../models/interfaces/IRoomForm";
 import { setTitle, setPrice, setMaxPeople, setDesc, setRoomNumbers, setHotelId } from "../../../store/slices/addRoomFormSlice";
 
 export function useRoomSelector(): IRoomForm {
-    const title = useAppSeletor(state => state.addRoomForm.title)
-    const price = useAppSeletor(state => state.addRoomForm.price)
-    const maxPeople = useAppSeletor(state => state.addRoomForm.maxPeople)
-    const desc = useAppSeletor(state => state.addRoomForm.desc)
-    const roomNumbers = useAppSeletor(state => state.addRoomForm.roomNumbers)
-    const hotelId = useAppSeletor(state => state.addRoomForm.hotelId)
+    const title = useAppSelector(state => state.addRoomForm.title)
+    const price = useAppSelector(state => state.addRoomForm.price)
+    const maxPeople = useAppSelector(state => state.addRoomForm.maxPeople)
+    const desc = useAppSelector(state => state.addRoomForm.desc)
+    const roomNumbers = useAppSelector(state => state.addRoomForm.roomNumbers)
+    const hotelId = useAppSelector(state => state.addRoomForm.hotelId)
 
     return {
         title, price, maxPeople, desc, roomNumbers, hotelId
@@ -17,7 +17,7 @@ export function useRoomSelector(): IRoomForm {
 }
 
 export function useRoomFormBinding() {
-    const dispatch = useAppDispath()
+    const dispatch = useAppDispatch()
     const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => dispatch(setTitle(e.target.value))
     const onChangePrice = (e: ChangeEvent<HTMLInputElement>) => dispatch(setPrice(e.target.value))
     const onChangeMaxPeople = (e: ChangeEvent<HTMLInputElement>) => dispatch(setMaxPeople(e.target.value))

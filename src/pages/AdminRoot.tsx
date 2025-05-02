@@ -7,13 +7,13 @@ import { AdminAppUri_Absolute } from "../utilities/enums/adminAppUri"
 import IErrorResponse from "../models/interfaces/IErrorResponse";
 import ErrorResponse from "../models/implements/ErrorResponse";
 import { useEffect } from "react";
-import { useAppSeletor } from "../cusHooks/reduxHooks";
+import { useAppSelector } from "../cusHooks/reduxHooks";
 import IAuthenResponse from "../models/interfaces/IAuthenResponse";
 
 export default function AdminRoot() {
     // check logged in user
     // if not, redirect to login
-    const jwtToken = useAppSeletor(state => state.authen.token)
+    const jwtToken = useAppSelector(state => state.authen.token)
     useEffect(() => {
         if (!jwtToken)
             window.location.href = AdminAppUri_Absolute.login

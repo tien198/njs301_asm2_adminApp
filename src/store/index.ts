@@ -3,12 +3,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import authenReducer from './slices/authenSlice'
 import addHotelFormReducer from './slices/addHotelFormSlice'
 import addRoomFormReducer from './slices/addRoomFormSlice'
+import modalReducer from './slices/modalSlice'
 
 const store = configureStore({
     reducer: {
         authen: authenReducer,
         addHotelForm: addHotelFormReducer,
-        addRoomForm: addRoomFormReducer
+        addRoomForm: addRoomFormReducer,
+        modal: modalReducer
     }
 })
 
