@@ -6,17 +6,17 @@ export default function ErrorPage() {
     console.error(error)
 
     let errorList = []
-    for (const er in error.errors) {
-        errorList.push(er)
+    for (const err in error.errors) {
+        errorList.push(err)
     }
 
     return (
-        <div className="flex flex-col justify-center items-center w-screen">
+        <div className="w-screen h-screen flex flex-col justify-center items-center gap-7 md:gap-10">
             <h1>Oops!</h1>
             <p>Sorry, an unexpected error has occurred.</p>
             <p>
                 {/* <i>{error.statusText || error.message }</i> */}
-                <i>{error.status || error.message}</i>
+                <i className="font-bold text-5xl">{error.status || error.message}</i>
             </p>
             {/* <p>{error.name}</p> */}
             <div>

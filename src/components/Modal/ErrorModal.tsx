@@ -36,7 +36,7 @@ function LoginRedirector() {
     return (
         <div className="flex justify-between gap-10">
             <span><Button onClick={handLogIn}>Log In</Button></span>
-            <span><Button onClick={handCancel}>Cancel</Button></span>
+            <span><Button isBgWhite onClick={handCancel}>Cancel</Button></span>
         </div>
     )
 }

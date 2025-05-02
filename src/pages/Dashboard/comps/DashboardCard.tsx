@@ -17,7 +17,7 @@ export default function DashboardCards({ loader }: props) {
                 <div key={title} className="rounded-xl shadow p-5">
                     <h4 className="text-sm text-gray-500 uppercase">{title}</h4>
                     <ReactRouterAwait resoleve={loader[keys[i]]} >{(val: string) =>
-                        <p className="text-2xl font-semibold mt-2">{val}</p>
+                        <p className="text-2xl font-semibold mt-2">{val??'NaN'}</p>
                     }
                     </ReactRouterAwait>
                 </div>
