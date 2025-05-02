@@ -1,3 +1,6 @@
+import IErrorResponse from "../models/interfaces/IErrorResponse"
+import store from "../store"
+import { reInitState } from "../store/slices/modalSlice"
 import { getJwtToken } from "./localStorageUtils/authenToken"
 
 export default function getWithToken(uri: string, requestInit?: RequestInit) {
@@ -17,6 +20,11 @@ export default function getWithToken(uri: string, requestInit?: RequestInit) {
         }
         ).catch(err => {
             console.error(err)
-        return Promise.resolve(undefined)
+            store.dispatch(reInitState({
+                hiddenClass: '',
+                modalInfors: err as IErrorResponse,
+                type: 'error'
+            }))
+            return Promise.resolve(undefined)
         })
 }

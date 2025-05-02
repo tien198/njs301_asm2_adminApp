@@ -12,10 +12,12 @@ export default function RoomTable() {
         <Table headers={['Id', 'Title', 'Description', 'Price', 'Max People', 'Room Numbers', 'Action']}>
             <tbody>
                 <ReactRouterAwait resoleve={loader.rooms} fallback={<tr><td>Loading...</td></tr>}>
-                    {(rooms: LoaderResult) => rooms?.map(room =>
-                        <RoomRow key={room._id} room={room} />
-                    )
-                        ?? <tr><td colSpan={8}>Not found any Room or fetch fail !</td></tr>
+                    {(rooms: LoaderResult) => rooms
+                        ? (rooms.map(room =>
+                            <RoomRow key={room._id} room={room} />
+                        )
+                            ?? <tr><td colSpan={8} className='text-center p-7'>Not found any Room !</td></tr>)
+                        : <tr><td colSpan={8} className='text-center p-7'>Fail to load, maybe because of the interruption of Internet or Server</td></tr>
                     }
                 </ReactRouterAwait>
             </tbody>

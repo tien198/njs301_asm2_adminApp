@@ -1,9 +1,8 @@
-import IErrorResponse from "./IErrorResponse"
+import { HiddenState, ModalInfors, ModalType } from "../types/modalRelavantTypes"
 
-// infors display in modal
-export type ModalInfors = IErrorResponse | {}
 
 export default interface IModalData {
-    hiddenClass: string
+    hiddenClass: HiddenState
     modalInfors: ModalInfors
+    type: ModalType
 }

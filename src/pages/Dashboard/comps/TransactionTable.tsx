@@ -18,8 +18,8 @@ export default function TransactionTable({ transactions }: props) {
             <Table headers={['ID', 'User', 'Hotel', 'Room', 'Date', 'Price', 'Payment Method', 'Status']}>
                 <tbody>
                     <ReactRouterAwait resoleve={transactions} fallback={<tr><td colSpan={9} className='text-center p-7'>Loading...</td></tr>}>
-                        {(trans: ITransaction[]) =>
-                            trans?.map((tran) => (
+                        {(trans: ITransaction[]) => trans
+                            ? (trans.map((tran) => (
                                 <tr key={tran._id} className="border-b h-16 border-gray-400 hover:bg-gray-100">
                                     <td><input type="checkbox" /></td>
                                     <td>{tran._id}</td>
@@ -32,7 +32,8 @@ export default function TransactionTable({ transactions }: props) {
                                     <td><StatusBadge status={tran.status} /></td>
                                 </tr>
                             ))
-                            ?? <tr><td colSpan={9} className='text-center p-7'>Not found transactions</td></tr>
+                                ?? <tr><td colSpan={9} className='text-center p-7'>Not found any transaction !</td></tr>)
+                            : <tr><td colSpan={9} className='text-center p-7'>Fail to load, maybe because of the interruption of Internet or Server</td></tr>
                         }
                     </ReactRouterAwait>
                 </tbody>

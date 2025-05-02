@@ -8,21 +8,21 @@ import { setModalHidden } from "../../store/slices/modalSlice"
 
 
 export default function ErrorModal() {
-    const errorRes = useAppSelector(state =>state.modal.modalInfors) as IErrorResponse
+    const errorRes = useAppSelector(state => state.modal.modalInfors) as IErrorResponse
 
     return (
         <Modal>
             <div className="w-full p-10 shadow flex flex-col items-center justify-center gap-7">
                 <span className="text-lg font-bold">{errorRes.status}</span>
                 <span>{errorRes.message}</span>
-                {errorRes.status === 401 && <LoginRedirector  />}
+                {errorRes.status === 401 && <ModalAction />}
             </div>
         </Modal>
     )
 }
 
 
-function LoginRedirector() {
+function ModalAction() {
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
 

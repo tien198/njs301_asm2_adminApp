@@ -19,13 +19,13 @@ export default function TransManagement() {
 
 export function loader(args: LoaderFunctionArgs): ILoader {
     initialLoaderAdminPages()
-    
+
     const param = args.request.url.split('?')[1]
     const searchParams = new URLSearchParams(param)
     const page = searchParams.get('page') || '0'
     const limit = searchParams.get('limit') || '10'
 
-    const trans = getWithToken(BackendAdminUri.getTransactions + `?page=${page}&limit=${limit}`)
+    const trans = getWithToken(BackendAdminUri.getAdminTransactions + `?page=${page}&limit=${limit}`)
 
     return { trans }
 }

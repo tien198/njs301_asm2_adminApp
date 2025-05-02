@@ -6,7 +6,7 @@ import { getJwtToken, getUserInfor } from "../utilities/localStorageUtils/authen
 import IErrorResponse from "../models/interfaces/IErrorResponse";
 import ErrorResponse from "../models/implements/ErrorResponse";
 import IAuthenResponse from "../models/interfaces/IAuthenResponse";
-import { setModalInfors, showModal } from "../store/slices/modalSlice";
+import { reInitState } from "../store/slices/modalSlice";
 
 export default function AdminRoot() {
 
@@ -40,10 +40,13 @@ export function initialLoaderAdminPages() {
         token && userInfor && store.dispatch(setAuthen(authen))
 
     } catch (error) {
-        const er = error as IErrorResponse
-        if (er.status === 401) {
-            store.dispatch(setModalInfors(er))
-            store.dispatch(showModal())
+        const err = error as IErrorResponse
+        if (err.status === 401) {
+            store.dispatch(reInitState({
+                hiddenClass: '',
+                modalInfors: err,
+                type: 'error'
+            }))
         }
         console.error(error)
     }

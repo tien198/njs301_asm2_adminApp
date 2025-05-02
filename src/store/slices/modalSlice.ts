@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import IModalData, { ModalInfors } from '../../models/interfaces/IModalData';
+import IModalData, { HiddenState, ModalInfors, ModalType } from '../../models/interfaces/IModalData';
+import IErrorResponse from "../../models/interfaces/IErrorResponse";
 
-type HiddenState = 'hidden' | 'fading-hidden' | ''
 
 const initialState: IModalData = {
     hiddenClass: 'hidden',
-    modalInfors: {}
+    modalInfors: {} as IErrorResponse,
+    type: ""
 }
 
 const modalSlice = createSlice({
@@ -21,10 +22,19 @@ const modalSlice = createSlice({
         },
         setModalInfors(state, action: PayloadAction<ModalInfors>) {
             state.modalInfors = action.payload
+        },
+        setModalType(state, action: PayloadAction<ModalType>) {
+            state.type = action.payload
+        },
+        reInitState(_, action: PayloadAction<IModalData>) {
+            return action.payload
+        },
+        resetState() {
+            return initialState
         }
     }
 })
 
 export default modalSlice.reducer
 
-export const { showModal, setModalHidden, setModalInfors } = modalSlice.actions
+export const { showModal, setModalHidden, setModalInfors, setModalType, reInitState, resetState } = modalSlice.actions

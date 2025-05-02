@@ -11,10 +11,12 @@ export default function TransTable() {
         <Table headers={['Id', 'User', 'Hotel', 'Room', 'Date', 'Prices', 'Payment Method', 'Status']}>
             <tbody>
                 <ReactRouterAwait resoleve={loader.trans} fallback={<tr><td>Loading...</td></tr>}>
-                    {(trans: LoaderResult) => trans?.map(tran =>
-                        <TransRow key={tran._id} tran={tran} />
-                    )
-                        ?? <tr><td colSpan={9}>Not found any Transaction or fetch fail !</td></tr>
+                    {(trans: LoaderResult) => trans
+                        ? (trans.map(tran =>
+                            <TransRow key={tran._id} tran={tran} />
+                        )
+                            ?? <tr><td colSpan={9} className='text-center p-7'>Not found any Transaction !</td></tr>)
+                        : <tr><td colSpan={9} className='text-center p-7'>Fail to load, maybe because of the interruption of Internet or Server</td></tr>
                     }
                 </ReactRouterAwait>
             </tbody>
