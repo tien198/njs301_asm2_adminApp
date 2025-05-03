@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import IModalData, { HiddenState, ModalInfors, ModalType } from '../../models/interfaces/IModalData';
+import IModalData from '../../models/interfaces/IModalData';
 import IErrorResponse from "../../models/interfaces/IErrorResponse";
+import { HiddenState, ModalInfors, ModalType } from "../../models/types/modalRelavantTypes";
 
 
 const initialState: IModalData = {

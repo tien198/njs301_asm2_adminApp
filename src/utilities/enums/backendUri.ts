@@ -20,7 +20,7 @@ export enum BackendAdminUri {
     getAdminRooms = base + admin + 'get-rooms/',
     getAdminTransactions = base + admin + 'get-transactions/',
 
-    getTypeNamesList = base + admin + 'get-type-names/',
+    getTypeNamesList = base + 'get-type-names/',
     getRoomTitleList = base + admin + 'get-room-titles/',
     getHotelNamesList = base + admin + 'get-hotel-names/',
 
